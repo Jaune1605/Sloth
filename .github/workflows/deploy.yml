@@ -28,6 +28,7 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
         script: ls  # Ou toute autre commande que vous souhaitez tester
+        debug: true
     - name: Deploy to Server
       uses: appleboy/scp-action@master
       with:
