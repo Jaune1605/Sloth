@@ -44,7 +44,7 @@ const LandingPage = () => {
         </div>
         <div className="text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          PajolRio will make sure your are happpy at school
+          Sloth IT will bring your it to the next level.
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Never forget what you are thinking about.
