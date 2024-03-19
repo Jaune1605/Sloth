@@ -9,22 +9,23 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '21'  # Spécifiez la version de Node.js qui correspond à votre projet
-    - name: Install dependencies
-      run: npm install 
-      working-directory: ./sloth-front/
-    - name: Build
-      run: npm run build  
-    - name: Deploy to Server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USER }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-        port: ${{ secrets.SERVER_PORT }}
-        source: "./dist/*"
-        target: "/home/demo/sloth"
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '21'  # Assurez-vous que cette version correspond à celle utilisée pour le développement de votre projet
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./sloth-front/
+      - name: Build
+        run: npm run build
+        working-directory: ./sloth-front/
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: "./sloth-front/dist/*"  # Assurez-vous que le chemin source correspond au dossier de build généré par Vite
+          target: "/home/demo/sloth"
