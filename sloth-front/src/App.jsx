@@ -11,7 +11,7 @@ import { Dialog } from '@headlessui/react'
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Users', href: '/users' },
+  { name: 'Tchat', href: '/users' },
   // Add more navigation items here as needed
 ];
 
