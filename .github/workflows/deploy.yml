@@ -19,6 +19,7 @@ jobs:
       working-directory: ./sloth-front/
     - name: Build
       run: npm run build  
+      working-directory: ./sloth-front/
     - name: SSH Test Connection
       uses: appleboy/ssh-action@master
       with:
