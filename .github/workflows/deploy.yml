@@ -29,3 +29,5 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           source: "./sloth-front/dist/*"  # Assurez-vous que le chemin source correspond au dossier de build généré par Vite
           target: "/home/demo/sloth"
+          timeout: 60s
+          command_timeout: 20m
