@@ -1,33 +1,31 @@
-name: Deploy Website
-
-on:
-  push:
-    branches:
-      - master
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '21'  # Assurez-vous que cette version correspond à celle utilisée pour le développement de votre projet
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./sloth-front/
-      - name: Build
-        run: npm run build
-        working-directory: ./sloth-front/
-      - name: Deploy to Server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: ${{ secrets.SERVER_PORT }}
-          source: "./sloth-front/dist/*"  # Assurez-vous que le chemin source correspond au dossier de build généré par Vite
-          target: "/home/demo/sloth"
-          timeout: 60s
-          command_timeout: 20m
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '21'  # Assurez-vous que cela correspond à votre version de Node.js
+    - name: Install dependencies
+      run: npm install 
+      working-directory: ./sloth-front/
+    - name: Build
+      run: npm run build  
+    - name: SSH Test Connection
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        port: ${{ secrets.SERVER_PORT }}
+        script: ls  # Ou toute autre commande que vous souhaitez tester
+    - name: Deploy to Server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        port: ${{ secrets.SERVER_PORT }}
+        source: "./sloth-front/dist/*"
+        target: "/home/demo/sloth"
