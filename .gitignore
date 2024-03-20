@@ -1,0 +1,8 @@
+# ignore pyenv
+auto-homelab-local/
+
+# Ignore Terraform files
+__pycache__/
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
