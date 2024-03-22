@@ -6,10 +6,9 @@ terraform {
         }
 
         proxmox = {
-            source = "telmate/proxmox"
-            version = "2.7.4"
+            source = "Telmate/proxmox"
+            version = "3.0.1-rc1"
         }
-
     }
 }
 
@@ -18,8 +17,8 @@ provider "aws" {
 }
 
 provider "proxmox" {
-  pm_api_url  = "https://10.19.4.4:8006/api2/json"
-  pm_user     = "root@pam"
-  pm_password = "slothPAJO123!"
   pm_tls_insecure = true
+  pm_api_url      = "https://10.19.4.4:8006/api2/json"
+  pm_user         = "root@pam"
+  pm_password     = "slothPAJO123!"
 }
