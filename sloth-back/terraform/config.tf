@@ -6,8 +6,8 @@ terraform {
         }
 
         proxmox = {
-            source = "Telmate/proxmox"
-            version = "3.0.1-rc1"
+            source = "bpg/proxmox"
+            version = "0.50.0"
         }
     }
 }
@@ -17,8 +17,19 @@ provider "aws" {
 }
 
 provider "proxmox" {
-  pm_tls_insecure = true
-  pm_api_url      = "https://10.19.4.4:8006/api2/json"
-  pm_user         = "root@pam"
-  pm_password     = "slothPAJO123!"
+  endpoint = "https://10.19.4.4:8006/"
+  # TODO: use terraform variable or remove the line, and use PROXMOX_VE_USERNAME environment variable
+  username = "root@pam"
+  # TODO: use terraform variable or remove the line, and use PROXMOX_VE_PASSWORD environment variable
+  password = "slothPAJO123!"
+  # because self-signed TLS certificate is in use
+    insecure = true
+  # uncomment (unless on Windows...)
+  # tmp_dir  = "/var/tmp"
+
+  ssh {
+    agent = true
+    # TODO: uncomment and configure if using api_token instead of password
+    # username = "root"
+  }
 }
