@@ -1,20 +1,28 @@
 from pydantic import BaseModel
 
 class AWSInstance(BaseModel):
-    name: str = "example-instance"
+    """
+    Modèle (MINIMAL) pour créer une instance AWS
+    """
+    name: str = "example-aws-instance"
     type: str = "t2.micro"
     ami: str = "ami-00c71bd4d220aa22a"
     region: str = "eu-west-3"
 
 class ProxmoxInstance(BaseModel):
-    name: str = "example-instance"
-    type: str = "t2.micro"
-    ami: str = "ami-00c71bd4d220aa22a"
-    region: str = "eu-west-3"
+    name : str = "example-proxmox-vm"
+    node_name : str = "infra"
+    username : str = "user"
+    password : str = "password"
+    datastore_id : str = "local-lvm"
+    file_id : str = "local:iso/ubuntu-22.10-server-cloudimg-amd64.img"
+    interface : str = "virtio0"
+    iothread : bool = True
+    discard : str = "on"
+    size : int = "20"
 
-class GCPInstance(BaseModel):
-    name: str = "example-instance"
-    type: str = "t2.micro"
-    ami: str = "ami-00c71bd4d220aa22a"
-    region: str = "eu-west-3"
+class Instance(BaseModel):
+    provider: str
+    details: dict
+
 
