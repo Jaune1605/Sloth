@@ -1,0 +1,8 @@
+# Paramètres de la configuration
+resource "aws_instance" "{{ name }}" {
+  ami = "{{ ami }}"
+  instance_type = "{{ type }}"
+  tags = {
+    Name = "{{ name }}"
+  }
+}
