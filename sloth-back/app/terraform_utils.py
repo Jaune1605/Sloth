@@ -1,6 +1,6 @@
 import json
 
-from python_terraform import Terraform, IsFlagged
+from python_terraform import Terraform
 from jinja2 import Environment, FileSystemLoader
 
 
