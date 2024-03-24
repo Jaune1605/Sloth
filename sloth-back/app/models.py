@@ -17,9 +17,9 @@ class ProxmoxInstance(BaseModel):
     datastore_id : str = "local-lvm"
     file_id : str = "local:iso/ubuntu-22.10-server-cloudimg-amd64.img"
     interface : str = "virtio0"
-    iothread : bool = True
+    iothread : str = "true"
     discard : str = "on"
-    size : int = "20"
+    size : str = "20"
 
 class Instance(BaseModel):
     provider: str
