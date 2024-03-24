@@ -30,7 +30,7 @@ def init_terraform():
 
     return tf
 
-def apply_terraform(instance_details):
+def apply_terraform(provider : str, instance_details : dict):
     """
     Appliquer la configuration Terraform pour créer une instance
     :param instance_details:  Détails de l'instance à créer
@@ -38,7 +38,10 @@ def apply_terraform(instance_details):
     """
     tf = init_terraform()
 
-    rendered_template = render_template('aws_instance.tf.j2', instance_details)
+    if provider == 'aws':
+        rendered_template = render_template('aws_instance.tf.j2', instance_details)
+    elif provider == 'proxmox':
+        rendered_template = render_template('proxmox_instance.tf.j2', instance_details)
 
     tf_file = f"./terraform/instances/{instance_details['name']}.tf"
 
@@ -47,8 +50,8 @@ def apply_terraform(instance_details):
 
     return tf.apply(skip_plan=True, capture_output=False)
 
-def createInfrastructure(instance_details):
-        return_code, stdout, stderr = apply_terraform(instance_details)
+def createInfrastructure(provider : str, instance_details : dict):
+        return_code, stdout, stderr = apply_terraform(provider,instance_details)
 
         if return_code != 0:
             raise Exception(f'Erreur Terraform: {stderr}')
