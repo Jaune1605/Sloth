@@ -1,20 +1,10 @@
 terraform {
-    required_providers {
-
-        aws = {
-            source = "hashicorp/aws"
-        }
-        proxmox = {
-            source = "bpg/proxmox"
-            version = "0.50.0"
-        }
+  required_providers {
+    proxmox = {
+        source = "bpg/proxmox"
+        version = "0.50.0"
     }
-}
-
-provider "aws" {
-    region = "eu-west-3"
-    access_key = "AKIA2UC277IHXM4VBKGP"
-    secret_key = "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"
+  }
 }
 
 provider "proxmox" {
@@ -29,7 +19,7 @@ provider "proxmox" {
   # tmp_dir  = "/var/tmp"
 
   ssh {
-    agent = true
+    agent = false
     # TODO: uncomment and configure if using api_token instead of password
     # username = "root"
   }

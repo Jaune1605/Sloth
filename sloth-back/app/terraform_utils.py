@@ -43,7 +43,7 @@ def apply_terraform(provider : str, instance_details : dict):
     elif provider == 'proxmox':
         rendered_template = render_template('proxmox_instance.tf.j2', instance_details)
 
-    tf_file = f"./terraform/instances/{instance_details['name']}.tf"
+    tf_file = f"./terraform/modules/{provider}/{instance_details['name']}.tf"
 
     with open(tf_file, 'w') as f:
         f.write(rendered_template)
