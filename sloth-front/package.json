@@ -1,8 +1,8 @@
 {
-  "name": "notus-angular",
+  "name": "sloth-angular",
   "version": "1.1.0",
-  "description": "Notus Angular - Free Tailwind CSS UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-angular",
+  "description": "Sloth Angular - Front of IT solution.",
+  "repository": "https://github.com/",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
