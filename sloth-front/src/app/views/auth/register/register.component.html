@@ -2,11 +2,11 @@
   <div class="flex content-center items-center justify-center h-full">
     <div class="w-full lg:w-6/12 px-4">
       <div
-        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0"
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white-sloth border-0"
       >
         <div class="rounded-t mb-0 px-6 py-6">
           <div class="text-center mb-3">
-            <h6 class="text-blueGray-500 text-sm font-bold">Sign up</h6>
+            <h6 class="text-black text-sm font-bold">Sign up</h6>
           </div>
          
         </div>
@@ -15,7 +15,7 @@
           <form>
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                class="block uppercase text-black text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
                 Name
@@ -29,7 +29,7 @@
 
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                class="block uppercase text-black text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
                 Email
@@ -43,7 +43,38 @@
 
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                class="block uppercase text-black text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Account
+              </label>
+              <ul class="grid w-full gap-6 md:grid-cols-2">
+                  <li>
+                      <input type="radio" id="hosting-admin" name="hosting" value="hosting-admin" class="hidden peer" required />
+                      <label for="hosting-admin" class="inline-flex items-center justify-between w-full p-5 text-black px-3 py-3 shadow rounded cursor-pointer peer-checked:border-black peer-checked:border-5 hover:text-black">
+                        <div class="block">
+                              <div class="w-full text-s font-semibold">Admin</div>
+                              <div class="w-full text-xs text-blueGray-300 ">Abonnement needed</div>
+                          </div>
+                          <i class="fas fa-user-cog"></i> <!-- Admin -->
+                      </label>
+                  </li>
+                  <li>
+                      <input type="radio" id="hosting-client" name="hosting" value="hosting-client" class="hidden peer">
+                      <label for="hosting-client" class="inline-flex items-center justify-between w-full p-5 text-black px-3 py-3 shadow rounded cursor-pointer peer-checked:border-orange-500 peer-checked:text-black hover:text-black">
+                        <div class="block">
+                              <div class="w-full text-s font-semibold">Client</div>
+                              <div class="w-full text-xs text-blueGray-300">Use for free</div>
+                          </div>
+                          <i class="fas fa-user"></i> <!-- Client -->
+                      </label>
+                  </li>
+              </ul>
+            </div>
+
+            <div class="relative w-full mb-3">
+              <label
+                class="block uppercase text-black text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
                 Password
@@ -60,11 +91,11 @@
                 <input
                   id="customCheckLogin"
                   type="checkbox"
-                  class="form-checkbox border-0 text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded"
+                  class="form-checkbox border-0 shadow text-black ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded"
                 />
                 <span class="ml-2 text-sm font-semibold text-blueGray-600">
                   I agree with the
-                  <a href="javascript:void(0)" class="text-red-600">
+                  <a href="javascript:void(0)" class="text-orange-500">
                     Privacy Policy
                   </a>
                 </span>
@@ -73,13 +104,20 @@
 
             <div class="text-center mt-6">
               <button
-                class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                class="bg-orange-sloth text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
               >
                 Create Account
               </button>
             </div>
           </form>
+        </div>
+      </div>
+      <div class="flex flex-wrap mt-6 relative">
+        <div class="w-1/2 ">
+          <a [routerLink]="['/auth/login']" class="text-blueGray-200">
+            <small>Already have an account ?</small>
+          </a>
         </div>
       </div>
     </div>
