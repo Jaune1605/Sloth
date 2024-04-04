@@ -33,7 +33,7 @@ def plan_deployments(server_type: str, server_spec: dict) -> dict:
 
         tf.init()
 
-        with open(TERRAFORM_DIR + "proxmox.tf", "w") as tf:
+        with open(TERRAFORM_DIR + "proxmox-2.tf", "w") as tf:
             tf.write(configured_template)
 
     return {"plan_message": server_type}
@@ -48,6 +48,9 @@ def deploy_server() -> dict:
     return {"build_message": build_output}
 
 def destroy_server(server_name: str) -> dict:
+
+    # Avant le destroy il faut intéragir avec l'API afin d'éteindre le serveur pour Proxmox
+
 
     Terraform().destroy(TERRAFORM_DIR)
 
