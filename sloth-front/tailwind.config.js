@@ -19,6 +19,10 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
+      'white-sloth': '#fcffff', 
+      'orange-sloth': '#e86e17',
+      'gray-sloth': '#474f4e',
+      'brown-sloth': '#372514',
     },
     extend: {
       minHeight: {
