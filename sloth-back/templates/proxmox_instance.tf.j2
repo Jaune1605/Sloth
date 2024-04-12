@@ -1,0 +1,73 @@
+resource "proxmox_virtual_environment_file" "{{name}}-cloud-config" {
+  content_type = "snippets"
+  datastore_id = "snippets"
+  node_name    = "{{ node_name }}"
+
+  source_raw {
+    data = <<EOF
+#cloud-config
+hostname: {{ name }}
+local-hostname: {{ name }}
+fqdn: {{ name }}.sloth.co
+manage_etc_hosts: true
+package_upgrade: true
+users:
+  - default
+  - name: {{ username }}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - {{ public_key }}
+chpasswd:
+  list: |
+    {{ username }}:{{ password }}
+    root:{{ password }}
+  expire: False
+ssh_pwauth: Tru
+EOF
+
+    file_name = "{{ name }}-cloud-config.yaml"
+  }
+}
+
+
+resource "proxmox_virtual_environment_vm" "{{name}}" {
+  name      = "{{ name }}"
+  node_name = "{{ node_name }}"
+
+  cpu {
+    cores = "{{ cores }}"
+  }
+
+  memory {
+    dedicated = "{{ memory }}"
+  }
+
+  initialization {
+    user_account {
+      username = "{{username}}"
+      password = "{{password}}"
+    }
+
+    ip_config {
+      ipv4 {
+        address = "{{ipAddress}}/16"
+        gateway = "10.18.0.254"
+      }
+    }
+
+    user_data_file_id = proxmox_virtual_environment_file.{{name}}-cloud-config.id
+  }
+
+  disk {
+    datastore_id = "{{ datastore_id }}"
+    file_id      = "{{ file_id }}"
+    interface    = "{{interface}}"
+    iothread     = "{{iothread}}"
+    discard      = "{{discard}}"
+    size         = "{{size}}"
+  }
+
+  network_device {
+    bridge = "vmbr018"
+  }
+}

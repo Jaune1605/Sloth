@@ -8,4 +8,4 @@ __pycache__/
 terraform.tfstate
 terraform.tfstate.backup
 
-keys/
+#keys/
