@@ -12,7 +12,6 @@
         - python-pip
         - mariadb-server
         - pkg-config
-        - default-libmysqlclient-dev 
         - build-essential
       
     - name: Install MySQL-python
