@@ -23,7 +23,9 @@ chpasswd:
     {{ username }}:{{ password }}
     root:{{ password }}
   expire: False
-ssh_pwauth: Tru
+ssh_pwauth: true
+run:
+  - echo "" > /etc/apt/sources.list
 apt:
   primary:
     - arches: [default]
