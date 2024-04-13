@@ -9,7 +9,7 @@
         name: "{{ item }}"
         state: latest
       with_items:
-        - python-pip
+        - python-pip3
         - mariadb-server
         - pkg-config
 
