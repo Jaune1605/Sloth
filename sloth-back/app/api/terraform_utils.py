@@ -69,7 +69,7 @@ def createInfrastructure(provider : str, instance_details : dict):
 
         # Add the resource to the inventory file
         with open('../ansible/inventory', 'a') as f:
-            f.write(f"{instance_details['name']} ansible_host={instance_details['ipAddress']} ansible_user=sloth-admin ansible_ssh_private_key_file=../keys/{instance_details['name']}-key\n")
+            f.write(f"{instance_details['name']} ansible_host={instance_details['ipAddress']} ansible_user={instance_details['username']} ansible_ssh_private_key_file=../keys/{instance_details['name']}-key\n")
 
         return {"message": "Infrastructure created successfully"}
 
