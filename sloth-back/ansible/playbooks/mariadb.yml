@@ -6,8 +6,12 @@
 
     - name: Install MariaDB
       package:
-        name: mariadb-server
+        name: "{{ item }}"
         state: latest
+      with_items:
+        - mariadb
+        - mariadb-server
+        - MySQL-python
 
 
     - name: Enable and start mariadb service
