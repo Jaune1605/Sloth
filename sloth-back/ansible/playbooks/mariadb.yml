@@ -12,6 +12,7 @@
         - python3-pip
         - mariadb-server
         - pkg-config
+        - libmysqlclient-dev
 
     - name: Install MySQL-python
       pip:
