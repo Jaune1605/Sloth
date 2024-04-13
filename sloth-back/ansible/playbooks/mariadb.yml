@@ -4,19 +4,20 @@
   become: yes
   tasks:
 
-    - name: Install pip
+    - name: Install necessary packages
       package:
-        name: python3-pip
+        name: "{{ item }}"
         state: latest
+      with_items:
+        - python-pip
+        - mariadb-server
+        - pkg-config
+        - default-libmysqlclient-dev 
+        - build-essential
       
     - name: Install MySQL-python
       pip:
         name: MySQL-python
-        state: latest
-
-    - name: Install MariaDB
-      package:
-        name: mariadb-server
         state: latest
 
     - name: Enable and start mariadb service
