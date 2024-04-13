@@ -1,0 +1,39 @@
+---
+- name: Install MariaDB
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install MariaDB
+      package:
+        name: mariadb-server
+        state: latest
+
+
+    - name: Enable and start mariadb service
+      service:
+        name: mariadb
+        enabled: yes
+        state: started
+
+    - name: Secure MariaDB installation
+      mysql_user:
+        name: root
+        password: "testpassword"
+        login_user: root
+        login_password: ""
+        host: localhost
+        state: present
+
+    - name: Create database
+      mysql_db:
+        name: sloth
+        state: present
+        login_user: root
+        login_password: "testpassword
+
+    - name: Show databases
+      mysql_db:
+        login_user: root
+        login_password: "testpassword"
+        state: list
