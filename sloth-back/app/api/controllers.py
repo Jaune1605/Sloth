@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from api.models import AWSInstance, ProxmoxInstance, Instance
 from api.terraform_utils import *
+from api.ansible_utils import *
 
 router = APIRouter()
 
@@ -47,3 +48,11 @@ async def deleteInstance(instance_type: str, resource_name: str):
     except Exception as e:
         return HTTPException(status_code=400, detail="Failed to delete instance : " + e.__str__() )
 
+
+# Configuration part
+@router.post("/configure/{host}/{service}")
+async def configureHost(host: str, service: str):
+    try:
+        return run_ansible_playbook(host, service)
+    except Exception as e:
+        return HTTPException(status_code=400, detail="Failed to configure host : " + e.__str__())

@@ -1,4 +1,1 @@
-custom-proxmox-vm-8 ansible_host=10.18.0.252 ansible_user=sloth-admin ansible_ssh_private_key_file=../keys/sloth-key.pem
-custom-proxmox-vm-10 ansible_host=10.18.0.252 ansible_user=user ansible_ssh_private_key_file=../keys/custom-proxmox-vm-10-key
-test-vm-1 ansible_host=10.18.0.252 ansible_user=sloth-admin ansible_ssh_private_key_file=../keys/test-vm-1-keytest-vm-1 ansible_host=10.18.0.252 ansible_user=sloth-admin ansible_ssh_private_key_file=../keys/test-vm-1-key
 test-vm-1 ansible_host=10.18.0.252 ansible_user=sloth-admin ansible_ssh_private_key_file=../keys/test-vm-1-key
