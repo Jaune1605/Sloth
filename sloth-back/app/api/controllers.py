@@ -33,7 +33,7 @@ async def createProxmoxInstance(instance: ProxmoxInstance):
         print(e)
         return HTTPException(status_code=400, detail="Failed to create Proxmox instance : " + e.__str__() + "\n")
 
-@router.get("/instances/")
+@router.get("/instances")
 async def getInstances():
     try:
         return getInfrastructure()

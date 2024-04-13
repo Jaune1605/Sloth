@@ -105,43 +105,49 @@ def getInfrastructure():
     for servers in json.loads(stdout)['values']['root_module']['child_modules']:
         for server in servers['resources']:
 
-            try:
-                ip = server['values']['initialization'][0]['ip_config'][0]['ipv4'][0]['address']
-            except:
-                ip = 'N/A'
+            if server['type'] == 'proxmox_virtual_environment_vm' or server['type'] == 'aws_instance':
+                try:
+                    ip = server['values']['initialization'][0]['ip_config'][0]['ipv4'][0]['address']
+                except:
+                    ip = 'N/A'
 
-            try:
-                cpu_architecture = server['values']['cpu'][0]['architecture']
-            except:
-                cpu_architecture = 'N/A'
+                try:
+                    cpu_architecture = server['values']['cpu'][0]['architecture']
+                except:
+                    cpu_architecture = 'N/A'
 
-            try:
-                cpu_count = server['values']['cpu'][0]['cores']
-            except:
-                cpu_count = 'N/A'
-            
-            try: 
-                memory_size = server['values']['memory'][0]['dedicated']
-            except:
-                memory_size = 'N/A'
+                try:
+                    cpu_count = server['values']['cpu'][0]['cores']
+                except:
+                    cpu_count = 'N/A'
+                
+                try: 
+                    memory_size = server['values']['memory'][0]['dedicated']
+                except:
+                    memory_size = 'N/A'
 
-            try:
-                mac_address = server['values']['mac_addresses'][0]
-            except:
-                mac_address = 'N/A'
+                try:
+                    mac_address = server['values']['mac_addresses'][0]
+                except:
+                    mac_address = 'N/A'
 
-            try:
-                bridge_name = server['values']['network_device'][0]['bridge']
-            except:
-                bridge_name = 'N/A'
+                try:
+                    bridge_name = server['values']['network_device'][0]['bridge']
+                except:
+                    bridge_name = 'N/A'
 
-            if server['type'] == 'aws_instance':
-                type = 'aws'
-            elif server['type'] == 'proxmox_virtual_environment_vm':
-                type = 'proxmox'
+                try:
+                    
+                    if server['type'] == 'aws_instance':
+                        type = 'aws'
+                    elif server['type'] == 'proxmox_virtual_environment_vm':
+                        type = 'proxmox'
+                
+                except:
+                    type = 'N/A'
 
-            server_infos = { 'name': server['name'], 'type': type, 'id': server['values']['id'], 'ip': ip, 'mac_address': mac_address, 'cpu_architecture': cpu_architecture, 'cpu_count': cpu_count, 'memory_size': memory_size, 'bridge_name': bridge_name}
-            print(server_infos)
-            servers_list.append(server_infos)
+                server_infos = { 'name': server['name'], 'type': type, 'id': server['values']['id'], 'ip': ip, 'mac_address': mac_address, 'cpu_architecture': cpu_architecture, 'cpu_count': cpu_count, 'memory_size': memory_size, 'bridge_name': bridge_name}
+                print(server_infos)
+                servers_list.append(server_infos)
 
     return servers_list
