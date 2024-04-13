@@ -12,9 +12,7 @@
         - python-pip
         - mariadb-server
         - pkg-config
-        - build-essential
-        - libc6-dev
-      
+
     - name: Install MySQL-python
       pip:
         name: MySQL-python
