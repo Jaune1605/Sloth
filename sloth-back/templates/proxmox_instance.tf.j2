@@ -24,12 +24,12 @@ chpasswd:
     root:{{ password }}
   expire: False
 ssh_pwauth: true
-runcmd:
-  - [ echo, "", ">" , "/etc/apt/sources.list" ]
 apt:
   primary:
     - arches: [default]
       uri: http://archive.ubuntu.com/ubuntu/
+runcmd:
+  - [ sed, -i, -e, 's/kinetic/jammy/g', /etc/apt/sources.list ]
 EOF
 
     file_name = "{{ name }}-cloud-config.yaml"
