@@ -15,6 +15,7 @@ users:
   - default
   - name: {{ username }}
     sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
     ssh_authorized_keys:
       - {{ public_key }}
 chpasswd:
@@ -23,6 +24,10 @@ chpasswd:
     root:{{ password }}
   expire: False
 ssh_pwauth: Tru
+apt:
+  primary:
+    - arches: [default]
+      uri: http://archive.ubuntu.com/ubuntu/
 EOF
 
     file_name = "{{ name }}-cloud-config.yaml"
