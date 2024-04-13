@@ -1,1 +1,1 @@
-test-vm-2-ansible ansible_host=10.18.0.252 ansible_user=guillaume ansible_ssh_private_key_file=../keys/test-vm-2-ansible-key
+test-vm-2-ansible ansible_host=10.18.0.232 ansible_user=guillaume ansible_ssh_private_key_file=../keys/test-vm-2-ansible-key

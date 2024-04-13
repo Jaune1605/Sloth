@@ -16,7 +16,7 @@ users:
   - name: guillaume
     sudo: ALL=(ALL) NOPASSWD:ALL
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDI3cjsInOZENiDOPHsySO1uL/dTj1ambLNh67S7zp2jfettP80VLxMcc1iHDELgaGvuvAy0ZIDl0f+eZjnQRQGL0dnTtzUPCTMYF9GL6ONQIC7YWEe/paL2qR5BKKNEcIyOFcdKdJkC2jrKG5frslM2JpkaL/s64LBhJyL33JYG//ilZ2cTMVeN99DUqZNpJ+WB7tpiHOJyOGJx+ZgiijiPK0uicKcOwJ7UBBVbiKZ8QVll7JqonrrNraUJSTnhQyg89NhHoBz7aLd74cU7qogKE700biIWGCdHao76kRw+N94AsJAGAQnmts4GBTJOYb7W+BCCr627FaeQekk9msSz72BVnWPpNVpr/tNvS5EphUoDSa4HTXTFIhaJbwL88AeN68FOCdw+WhTh3H/MEk7sIG/BPPTsU476uCvVLWUbDJNcUpapiz5U0evMHhvXQi7dlGJoKYxjMlnjfcrW5Y5EvQ3a4sgA3Byu6Iiow9NB5tQoPF8bUGr/CObtLuOhd/VTpcv7xwq0+jKJo7HQKNZj3C4diZPlDiu4gzP1QzvwGmDJHv9muvmIEkR7NXxCKNVK9s5HX2kAPXI21PEHlS5ZzbrxdE3Q9kabxpE/JuFx+jUJ9n5hpRUQERCQR8DYjy1QAzTKipLHWbcCGIXp4Sre8osQESapg7YNRMtF6xK+w== guillaume@Laptop-Guillaume
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC8zNfQIo2/whzG0LINXyKbzXvNRVDz/lwq9aS4gjPo5hHxmzJrkdaYGTJyjYWrTbG5DUPDDoJPWyCKl5pLcVDTD6fx1VwrmaqRR+geEPyUZD3bNNysVWO9mgEmePqF4MJHkBN/EBkXfUiF67K7rJBucwzc2ndVQLvDPDhC+NwCIddWTnuOmbGaapZ9wwXoyJK2tCWWXBjk/juLPDrwZPHW+60VVyHoqjejAcxbvNEdf2iE1bOStQ8hmXfvrsfcF+riUQn6tysnin8mqzv9i1q5rsUVxQrcy2bygV7hB6VvzM88zUoghId9YttYUned4K1xAOSqk2UU1bUsnpEni2uz+UwCnhaeo7Rx/M0C5oGUg8zH4oA+2AmeYywVcEJ9JrsLe4mcqPqOSnsofj/TYWQ+Vsma/IxRUlYZM7TubgLZ1yMN9QFjtvB8BtFxizRMYa7eHxG8qpcLvb2Qn8hhj7iwbD0/Ew0CYA8Fh8GkSkVYU8+bmzWNLqohOhswPYu+detUDHlKuRlSvuEtbTZn5cGABGi0JxjplJJsZDFCJkwhW/yXIfi9J1crtSHYDOWcAU8TAeQnRYRynU4abcu33vF0yI4rqTHS3y8Klrw0wne3KN8ZUDKufQaDxlCH+4Gl0aiKVgdoWQrSIgwuPJ7cGmhOdkIj2XDDJYXV1TCthvkADQ== guillaume@Laptop-Guillaume
 
 chpasswd:
   list: |
@@ -51,7 +51,7 @@ resource "proxmox_virtual_environment_vm" "test-vm-2-ansible" {
 
     ip_config {
       ipv4 {
-        address = "10.18.0.252/16"
+        address = "10.18.0.232/16"
         gateway = "10.18.0.254"
       }
     }
