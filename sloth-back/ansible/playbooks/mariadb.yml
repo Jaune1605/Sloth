@@ -30,7 +30,7 @@
         name: sloth
         state: present
         login_user: root
-        login_password: "testpassword
+        login_password: "testpassword"
 
     - name: Show databases
       mysql_db:
