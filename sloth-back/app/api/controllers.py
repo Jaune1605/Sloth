@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from api.models import AWSInstance, ProxmoxInstance, Instance
+from api.models import AWSInstance, ProxmoxInstance
 from api.terraform_utils import *
 
 router = APIRouter()
