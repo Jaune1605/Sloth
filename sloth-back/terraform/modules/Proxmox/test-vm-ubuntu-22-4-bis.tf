@@ -7,17 +7,13 @@ resource "proxmox_virtual_environment_file" "test-vm-ubuntu-22-4-bis-cloud-confi
     data = <<EOF
 #cloud-config
 hostname: test-vm-ubuntu-22-4-bis
-local-hostname: test-vm-ubuntu-22-4-bis
-fqdn: test-vm-ubuntu-22-4-bis.sloth.co
-manage_etc_hosts: true
-package_upgrade: true
 users:
   - default
   - name: guillaume
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFQ35hGnkpmXiHfD+n/q00RDe/hmkWUrHrKOzUwDnPmC4vOsFgT9HwfZx0O9cuecFRHECVu+YxSC6vPj/XRjUb8JOXXoZ2Vh6FJEV6YXtD9D7SF1iBIEG806lHK0KNAGAgKogw9YBEJH66Cqn09C1X325hGjVirxZvihLzbxUyV+1tfH3dJCotYsIhhpudQrw51bcctIQecY2L5YxUZq93879aJ1TzIlvHkwLWD6HDT7IvhYW0j0gEPp9w30m2xAuRlIP8OIrnJPMoRy9AqgtM+i/H2RrCPmcsfzXDUJASMsxs7L3cMz7UKEZXScSkZJV/3mvyUB4ZzrmLn5z3Vo3JjctLCG6MWrgnOFNeHuRYh8ytWIaG2zHgPjLFNKft/tYrd1u/lMTjzCBxvgPpbWXp9Okp0C2eZiEKTcO5ubajHxXK2SgVCVjQ3SIb/nfJo9ZRTywpJdyw8fsqxqyQ9bfhoEKmaGCM0NXZ6QtwGphOYhq8F/45pxUfawlK0qjtiCRbMOKwh5/0spa29iri9ceDDwiCk95hdRhaJ2PuOSoIJnUxNLzF9NlnfrL0s7+3cFTLR+B6EEL/0tbV5s6YnY9evh2ouuKuXMBZnkoZq23PqJFi0ZMCtuZKG+h2EfXQnXkjt44Ub/6hqMj+03MCR8UpslXF6Q6ab6THOojlaWyipw== guillaume@Laptop-Guillaume
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQClszNe2qBkO8/8/5Dyl9iJTarqt55qZiYhfEzXv62DtYAYCA/B+3+i8Dc0oGE/EOskOhk0REvaky78ZEnsDkmGc9Hh+k348o/cSVLNMB4YS6x2ZNNE7hydZsufDPCq2W1m27c6AGCsw9UwKmEjMj56YGWUpXZqRxlK904c3NW7OavLDqpHy2pZqey1FL1BnDu8/YQA+95ferWiVB4NVKnauz0cOfV4QnK1ef7nHvcDcLkDEtBq9Ci14H7q71X8PufrxgtJpR+tSRh11qOIOo3cK5m/0YxidouPgaK+sWf3qAxJq9/YXm0iZSQeUMKCJWTqk4As87Qt7zuvkBI31oCxKtJSDTrTNeAgUrS60GQcwjcNAF7eZyuTJvRnpP/tmHl+Y48PbJHE+AROWIae/T6dW2/XHjqRjqn9wdM2DPnjsBPdu7ryUmImi/6GHOH71xCS9It83Bk7s2kVdC23Bfj6NKUjbXc+lqovVa96IhuhMwZwW5A4BP9GCM2VRtpnP2kVc3I3MnlB7E0ooQnl1hs7seHo6BT7gmFxnkwU3tYotnnuFN3xHVRGfZol0rR4X1FJdCSiG0qtX+lvT2v3aSHoddNIuym7IF1mEmQLPeXqD4MRC90G9KymQ1HpzHgAvDR817AxwQ8Hl2xC9eGCm3ljZk6LCTASfYqDqMrPqOTi5w== guillaume@Laptop-Guillaume
 
 chpasswd:
   list: |
@@ -26,7 +22,7 @@ chpasswd:
   expire: False
 ssh_pwauth: true
 runcmd:
-  - [ echo, "This server is automatically provisioned by Sloth", >, /etc/motd ]
+  - echo "This server is automatically provisioned by Sloth" > /etc/motd
 EOF
 
     file_name = "test-vm-ubuntu-22-4-bis-cloud-config.yaml"
