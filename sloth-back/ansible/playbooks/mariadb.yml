@@ -45,7 +45,7 @@
         login_password: "testpassword"
 
     - name: Show databases
-      mysql_db:
+      mysql_info:
         login_user: root
         login_password: "testpassword"
-        state: list
+        filter: databases
