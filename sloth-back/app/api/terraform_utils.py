@@ -158,11 +158,11 @@ def getProxmoxInstance(server):
     except:
         bridge_name = 'N/A'
 
-    type = "proxmox"
+    provider = "proxmox"
 
     server_infos = {
         'name': name,
-        'type': type,
+        'provider': provider,
         'id': id,
         'ip': ip,
         'mac_address': mac_address,
@@ -223,11 +223,11 @@ def getAwsInstance(server):
     except:
         ami = 'N/A'
 
-    type = "aws"
+    provider = "aws"
 
     server_infos = {
         'name': server['name'],
-        'type': type,
+        'provider': provider,
         'id': id,
         'private_ip': private_ip,
         'public_ip': public_ip,
