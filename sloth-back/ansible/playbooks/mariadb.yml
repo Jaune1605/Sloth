@@ -50,3 +50,7 @@
         login_user: root
         login_password: "testpassword"
         filter: databases
+      register: databases
+
+    - debug:
+        var: databases
