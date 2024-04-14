@@ -19,7 +19,7 @@
 
     - name: Install MySQL-python
       pip:
-        name: MySQL-python
+        name: mysqlclient
         state: latest
 
     - name: Enable and start mariadb service
