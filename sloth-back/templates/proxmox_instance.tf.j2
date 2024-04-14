@@ -24,12 +24,8 @@ chpasswd:
     root:{{ password }}
   expire: False
 ssh_pwauth: true
-apt:
-  primary:
-    - arches: [default]
-      uri: http://archive.ubuntu.com/ubuntu/
 runcmd:
-  - [ sed, -i, -e, 's/kinetic/jammy/g', /etc/apt/sources.list ]
+  - [ echo, "This server is automatically provisioned by Sloth", >, /etc/motd ]
 EOF
 
     file_name = "{{ name }}-cloud-config.yaml"
