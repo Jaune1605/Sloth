@@ -9,10 +9,12 @@
         name: "{{ item }}"
         state: latest
       with_items:
+        - python3
         - python3-pip
         - mariadb-server
         - pkg-config
-        - libmysqlclient-dev
+        - build-essential
+        - default-libmysqlclient-dev
 
     - name: Install MySQL-python
       pip:
