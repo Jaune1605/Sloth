@@ -1,8 +1,13 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 // layouts
 import { AdminComponent } from "./layouts/admin/admin.component";
@@ -44,7 +49,8 @@ import { TableDropdownComponent } from "./components/dropdowns/table-dropdown/ta
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
-import { AuthConfigModule } from './auth/auth-config.module';
+import { OAuthModule } from "angular-oauth2-oidc";
+
 
 @NgModule({
   declarations: [
@@ -80,8 +86,12 @@ import { AuthConfigModule } from './auth/auth-config.module';
     LandingComponent,
     ProfileComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, AuthConfigModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule, OAuthModule.forRoot({
+    resourceServer: {
+        allowedUrls: ['http://10.18.0.253:8080/api'],
+        sendAccessToken: true
+    }
+})],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
