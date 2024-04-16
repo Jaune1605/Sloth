@@ -100,6 +100,72 @@
           </a>
         </li>
 
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/infrastructure-page']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminInfrastructurePage="routerLinkActive"
+            [ngClass]="
+              adminInfrastructurePage.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-server mr-2 text-sm"
+              [ngClass]="
+                adminInfrastructurePage.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Infrastructure
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/server-configure']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminServerConfigure="routerLinkActive"
+            [ngClass]="
+              adminServerConfigure.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-cogs mr-2 text-sm"
+              [ngClass]="
+                adminServerConfigure.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Server Configure
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a
+            [routerLink]="['/admin/create-server-form']"
+            class="text-xs uppercase py-3 font-bold block"
+            routerLinkActive
+            #adminCreateServerForm="routerLinkActive"
+            [ngClass]="
+              adminCreateServerForm.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            "
+          >
+            <i
+              class="fas fa-plus mr-2 text-sm"
+              [ngClass]="
+                adminCreateServerForm.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "
+            ></i>
+            Create Server
+          </a>
+        </li>
+
       
 
         <li class="items-center">
