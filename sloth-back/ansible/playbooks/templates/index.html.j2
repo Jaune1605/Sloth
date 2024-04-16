@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #0066cc;
+        }
+        p {
+            padding: 5px 15px;
+            background: #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webserver Deployed with Sloth</h1>
+    <p>This is a test page for <strong>{{ ansible_hostname }}</strong></p>
+    <p>This server, named <strong>{{ ansible_nodename }}</strong>, is now fully configured and accessible via IP address: <strong>{{ ansible_default_ipv4.address }}</strong></p>
+    <p>Operating System: <strong>{{ ansible_distribution }} {{ ansible_distribution_version }}</strong></p>
+    <p>Memory: Total - <strong>{{ ansible_memtotal_mb }}</strong> MB, Free - <strong>{{ ansible_memfree_mb }}</strong> MB</p>
+    <p>CPU: <strong>{{ ansible_processor_vcpus }}</strong> vCPUs available</p>
+    <p>Disks: <strong>{{ ansible_devices.sda.size }}</strong> on /dev/sda</p>
+</body>
+</html>

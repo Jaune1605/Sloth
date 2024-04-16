@@ -1,0 +1,56 @@
+---
+- name: Install MariaDB
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install necessary packages
+      package:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - python3
+        - python3-pip
+        - mariadb-server
+        - pkg-config
+        - build-essential
+        - default-libmysqlclient-dev
+
+    - name: Install MySQL-python
+      pip:
+        name: mysqlclient
+        state: latest
+
+    - name: Enable and start mariadb service
+      service:
+        name: mariadb
+        enabled: yes
+        state: started
+
+    - name: Secure MariaDB installation
+      mysql_user:
+        name: root
+        password: "testpassword"
+        login_user: root
+        login_password: ""
+        host: localhost
+        state: present
+      ignore_errors: yes
+
+    - name: Create database
+      mysql_db:
+        name: sloth
+        state: present
+        login_user: root
+        login_password: "testpassword"
+
+    - name: Show databases
+      mysql_info:
+        login_user: root
+        login_password: "testpassword"
+        filter: databases
+      register: databases
+
+    - debug:
+        var: databases

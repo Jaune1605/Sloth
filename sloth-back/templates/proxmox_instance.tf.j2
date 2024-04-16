@@ -7,14 +7,11 @@ resource "proxmox_virtual_environment_file" "{{name}}-cloud-config" {
     data = <<EOF
 #cloud-config
 hostname: {{ name }}
-local-hostname: {{ name }}
-fqdn: {{ name }}.sloth.co
-manage_etc_hosts: true
-package_upgrade: true
 users:
   - default
   - name: {{ username }}
     sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
     ssh_authorized_keys:
       - {{ public_key }}
 chpasswd:
@@ -22,13 +19,14 @@ chpasswd:
     {{ username }}:{{ password }}
     root:{{ password }}
   expire: False
-ssh_pwauth: Tru
+ssh_pwauth: true
+runcmd:
+  - echo "This server is automatically provisioned by Sloth" > /etc/motd
 EOF
 
     file_name = "{{ name }}-cloud-config.yaml"
   }
 }
-
 
 resource "proxmox_virtual_environment_vm" "{{name}}" {
   name      = "{{ name }}"
