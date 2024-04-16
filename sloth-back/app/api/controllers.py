@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException
 from api.models import AWSInstance, ProxmoxInstance, Instance
 from api.terraform_utils import *
 from api.ansible_utils import *
+from api.snmp_utils import *
 
 router = APIRouter()
 
@@ -56,3 +57,39 @@ async def configureHost(host: str, service: str):
         return run_ansible_playbook(host, service)
     except Exception as e:
         return HTTPException(status_code=400, detail="Failed to configure host : " + e.__str__())
+
+@router.get("/configure")
+async def getPlaybooks():
+    try:
+        return get_ansible_playbooks()
+    except Exception as e:
+        return HTTPException(status_code=400, detail="Failed to get playbooks : " + e.__str__())
+
+
+@router.get("/server-info/{server_ip}")
+async def get_server_info(server_ip: str):
+
+    print("Hey ! I'm here !")
+
+    server_ip_sanitazed = server_ip.replace("-", ".")
+
+    infos = {}
+    oids = {
+        'uptime': '1.3.6.1.2.1.1.3.0',  # SysUpTime
+        'cpu_load': '1.3.6.1.4.1.2021.10.1.3.1',  # load1
+        'total_disk': '1.3.6.1.4.1.2021.9.1.6.1',  # dskTotal
+        'available_disk': '1.3.6.1.4.1.2021.9.1.7.1',  # dskAvail
+        'memory_total': '1.3.6.1.4.1.2021.4.5.0',  # total memory
+        'memory_free': '1.3.6.1.4.1.2021.4.6.0',  # free memory
+        'network_in_octets': '1.3.6.1.2.1.2.2.1.10.2',  # ifInOctets for interface index 2
+        'network_out_octets': '1.3.6.1.2.1.2.2.1.16.2',  # ifOutOctets for interface index 2
+        'system_description': '1.3.6.1.2.1.1.1.0'  # System description
+    }
+
+    for key, oid in oids.items():
+        try:
+            infos[key] = snmp_get(server_ip_sanitazed, oid)
+        except HTTPException as e:
+            infos[key] = f"Error retrieving {key}: {e.detail}"
+
+    return infos
