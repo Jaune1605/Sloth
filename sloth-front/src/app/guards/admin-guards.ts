@@ -24,7 +24,7 @@ export class AdmAuthGuard implements CanActivate {
       switchMap(isAuthenticated => {
         if (!isAuthenticated) {
           // Si l'utilisateur n'est pas authentifié, rediriger immédiatement
-          return of(this.router.parseUrl('/auth'));
+          return of(this.router.parseUrl('/landing'));
         }
         
         // Si authentifié, vérifier les rôles de l'utilisateur
@@ -34,20 +34,20 @@ export class AdmAuthGuard implements CanActivate {
               return true;
             } else {
               // Sinon, rediriger vers une autre page
-              return this.router.parseUrl('/auth');
+              return this.router.parseUrl('/profile');
             }
           }),
           catchError(err => {
             // Gestion des erreurs potentielles
             console.error('Error checking user roles', err);
-            return of(this.router.parseUrl('/auth'));
+            return of(this.router.parseUrl('/landing'));
           })
         );
       }),
       catchError(err => {
         // Gestion des erreurs lors de la vérification de l'authentification
         console.error('Error checking authentication', err);
-        return of(this.router.parseUrl('/auth'));
+        return of(this.router.parseUrl('/landing'));
       })
     );
   }
