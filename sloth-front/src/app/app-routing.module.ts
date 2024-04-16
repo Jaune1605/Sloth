@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { authGuard, adminGuard } from './guards/auth-guards';
+import { AdmAuthGuard } from './guards/admin-guards';
+import { AuthGuard } from './guards/auth-guards';
 
 
 // layouts
@@ -26,7 +27,7 @@ const routes: Routes = [
     path: "admin",
     component: AdminComponent,
     // canActivate: [AuthGuard], // Protect all routes under "admin" with AuthGuard
-    canActivate: [adminGuard],
+    canActivate: [AdmAuthGuard],
 
 
     children: [
@@ -47,7 +48,7 @@ const routes: Routes = [
     ],
   },
   // no layout views
-  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "landing", component: LandingComponent },
   { path: "", component: LandingComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
