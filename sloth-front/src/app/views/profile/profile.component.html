@@ -1,6 +1,6 @@
 <app-auth-navbar></app-auth-navbar>
 <main class="profile-page">
-  <section class="relative block h-500-px">
+  <section class="relative block h-200-px">
     <div
       class="absolute top-0 w-full h-full bg-center bg-cover bg-orange-sloth"
      
@@ -81,67 +81,49 @@
             </h3>
             
             
-            <form>
-              <label for="chat" class="sr-only">Your question...</label>
-              <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 ">
-                  <textarea id="chat" rows="1" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-orange-sloth focus:border-orange-sloth" placeholder="Your question..."></textarea>
-                      <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-orange-sloth">
-                      <i                 
-                        class="fas fa-paper-plane text-lg text-black"
-                      ></i>
-                      <span class="sr-only">Send message</span>
-                  </button>
-              </div>
+            
+
+            <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+              <textarea id="chat" name="question" [(ngModel)]="question" #chat="ngModel" rows="1" required
+                class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-orange-sloth focus:border-orange-sloth" 
+                placeholder="Your question...">
+              </textarea>
+              <button type="submit" [disabled]="!profileForm.valid"
+                class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-orange-sloth">
+                <i class="fas fa-paper-plane text-lg text-black"></i>
+                <span class="sr-only">Send message</span>
+              </button>
             </form>
+            
 
             
 
           </div>
+         
           <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i
-                class="fas fa-robot  mr-2 text-lg text-blueGray-400"
-              ></i>
+              <i class="fas fa-robot mr-2 text-lg text-blueGray-400"></i>
               Here is your answers
             </div>
             <div class="flex flex-wrap justify-center">
-              <div class="w-full px-3 py-2  space-y-5">
-
-                <a href="#" class="relative block p-6 px-3 py-2  bg-gray-200  rounded-lg shadow-lg">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Curentlly nothing</h5>          
-                  <p class="font-normal text-blueGray-700">Write your question or refomulate the question to get answer.</p>
-                </a>
-                 
-                <a href="#" class="relative block p-6 px-3 py-2  bg-white  rounded-lg shadow-lg">
-                  <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth rounded-full h-8 w-8">
-                    <span class="font-bold">{{ 90 }}</span>
+              <div class="w-full px-3 py-2 space-y-5">
+                <div *ngIf="predictions.length === 0" class="relative block p-6 px-3 py-2 bg-gray-200 rounded-lg shadow-lg">
+                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Currently nothing</h5>
+                  <p class="font-normal text-blueGray-700">Write your question or reformulate the question to get an answer.</p>
+                </div>
+                <div *ngFor="let prediction of predictions; let i = index" class="relative block p-6 px-3 py-2 bg-white rounded-lg shadow-lg">
+                  <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth rounded-full h-8 w-8" [ngStyle]="{'opacity': getOpacity(i)}">
+                    <span class="font-bold">{{ (prediction.probability * 100) | number:'1.0-0' }}</span>
                     <i class="fas fa-percentage ml-1 text-xs"></i>
                   </div>
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Most accurate answer</h5>           
-                  <p class="font-normal text-blueGray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                </a>
-
-                <a href="#" class="relative block p-6 px-3 py-2  bg-white  rounded-lg shadow-lg">
-                  <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth bg-opacity-50 rounded-full h-8 w-8">
-                    <span class="font-bold">{{ 70 }}</span>
-                    <i class="fas fa-percentage ml-1 text-xs"></i>
-                  </div>
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Secoond possibility</h5>           
-                  <p class="font-normal text-blueGray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                </a>
-                
-                <a href="#" class="relative block p-6 px-3 py-2  bg-white  rounded-lg shadow-lg">
-                  <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth bg-opacity-25 rounded-full h-8 w-8">
-                    <span class="font-bold">{{ 25 }}</span>
-                    <i class="fas fa-percentage ml-1 text-xs"></i>
-                  </div>
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Third possibility</h5>           
-                  <p class="font-normal text-blueGray-700">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                </a>
- 
+                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">{{ prediction.label }}</h5>
+                  <p class="font-normal text-blueGray-700">This answer has a probability of {{ (prediction.probability * 100) | number:'1.2-2' }}%</p>
+                </div>
               </div>
             </div>
           </div>
+          
+          
         </div>
       </div>
     </div>

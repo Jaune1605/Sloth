@@ -7,6 +7,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 // layouts
@@ -82,7 +83,7 @@ import { OAuthModule } from "angular-oauth2-oidc";
 
 
 
-    BrowserModule, AppRoutingModule,HttpClientModule, AuthModule.forRoot({
+    BrowserModule,FormsModule, AppRoutingModule,HttpClientModule, AuthModule.forRoot({
     
     config: {
       authority: 'http://10.19.4.2:8080/realms/External',
@@ -93,7 +94,6 @@ import { OAuthModule } from "angular-oauth2-oidc";
       responseType: 'id_token token',
       silentRenew: true,
       useRefreshToken: true,
-      logLevel: LogLevel.Debug,
       secureRoutes: ['/api'],
     },
  
