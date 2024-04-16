@@ -27,8 +27,4 @@ class ProxmoxInstance(BaseModel):
     memory : str = "2048"
     ipAddress : str = "10.18.0.252"
 
-class Instance(BaseModel):
-    provider: str
-    details: dict
-
 

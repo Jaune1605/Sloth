@@ -92,7 +92,10 @@ def destroyInfrastructure(provider: str, resource_name: str):
     return tf.apply(skip_plan=True, capture_output=False)
 
 def getInfrastructure():
-
+    """
+    Get all the instances created by Terraform
+    :return: The list of instances for all the providers (AWS, Proxmox)
+    """
     servers_list = []
 
     tf = Terraform(working_dir='../terraform')
@@ -104,50 +107,140 @@ def getInfrastructure():
 
     for servers in json.loads(stdout)['values']['root_module']['child_modules']:
         for server in servers['resources']:
-
-            if server['type'] == 'proxmox_virtual_environment_vm' or server['type'] == 'aws_instance':
-                try:
-                    ip = server['values']['initialization'][0]['ip_config'][0]['ipv4'][0]['address']
-                except:
-                    ip = 'N/A'
-
-                try:
-                    cpu_architecture = server['values']['cpu'][0]['architecture']
-                except:
-                    cpu_architecture = 'N/A'
-
-                try:
-                    cpu_count = server['values']['cpu'][0]['cores']
-                except:
-                    cpu_count = 'N/A'
-                
-                try: 
-                    memory_size = server['values']['memory'][0]['dedicated']
-                except:
-                    memory_size = 'N/A'
-
-                try:
-                    mac_address = server['values']['mac_addresses'][0]
-                except:
-                    mac_address = 'N/A'
-
-                try:
-                    bridge_name = server['values']['network_device'][0]['bridge']
-                except:
-                    bridge_name = 'N/A'
-
-                try:
-                    
-                    if server['type'] == 'aws_instance':
-                        type = 'aws'
-                    elif server['type'] == 'proxmox_virtual_environment_vm':
-                        type = 'proxmox'
-                
-                except:
-                    type = 'N/A'
-
-                server_infos = { 'name': server['name'], 'type': type, 'id': server['values']['id'], 'ip': ip, 'mac_address': mac_address, 'cpu_architecture': cpu_architecture, 'cpu_count': cpu_count, 'memory_size': memory_size, 'bridge_name': bridge_name}
-                print(server_infos)
-                servers_list.append(server_infos)
-
+            if server['type'] == 'aws_instance':
+                servers_list.append(getAwsInstance(server))
+            elif server['type'] == 'proxmox_virtual_environment_vm':
+                servers_list.append(getProxmoxInstance(server))
     return servers_list
+
+
+def getProxmoxInstance(server):
+    """
+    Get the details of a Proxmox instance
+    :param server_detail:  The details of the instance
+    :return:  The details of the instance
+    """
+    try:
+        name = server['name']
+    except:
+        name = 'N/A'
+    try:
+        id = server['values']['id']
+    except:
+        id = 'N/A'
+    try:
+        ip = server['values']['initialization'][0]['ip_config'][0]['ipv4'][0]['address']
+    except:
+        ip = 'N/A'
+
+    try:
+        cpu_architecture = server['values']['cpu'][0]['architecture']
+    except:
+        cpu_architecture = 'N/A'
+
+    try:
+        cpu_count = server['values']['cpu'][0]['cores']
+    except:
+        cpu_count = 'N/A'
+
+    try:
+        memory_size = server['values']['memory'][0]['dedicated']
+    except:
+        memory_size = 'N/A'
+
+    try:
+        mac_address = server['values']['mac_addresses'][0]
+    except:
+        mac_address = 'N/A'
+
+    try:
+        bridge_name = server['values']['network_device'][0]['bridge']
+    except:
+        bridge_name = 'N/A'
+
+    provider = "proxmox"
+
+    server_infos = {
+        'name': name,
+        'provider': provider,
+        'id': id,
+        'ip': ip,
+        'mac_address': mac_address,
+        'cpu_architecture': cpu_architecture,
+        'cpu_count': cpu_count,
+        'memory_size': memory_size,
+        'bridge_name': bridge_name
+    }
+
+    print(server_infos)
+
+    return server_infos
+
+
+def getAwsInstance(server):
+    """
+    Get the details of an AWS instance
+    :param server_detail:  The details of the instance
+    :return:  The details of the instance
+    """
+    try:
+        private_ip = server['values']['private_ip']
+    except:
+        private_ip = 'N/A'
+
+    try:
+        public_ip = server['values']['public_ip']
+    except:
+        public_ip = 'N/A'
+
+    try:
+        instance_type = server['values']['instance_type']
+    except:
+        instance_type = 'N/A'
+
+    try:
+        id = server['values']['id']
+    except:
+        id = 'N/A'
+
+    try:
+        cpu_count = server['values']['cpu_core_count']
+    except:
+        cpu_count = 'N/A'
+
+    try:
+        availability_zone = server['values']['availability_zone']
+    except:
+        availability_zone = 'N/A'
+
+    try:
+        disk_size = server['values']['root_block_device'][0]['volume_size']
+    except:
+        disk_size = 'N/A'
+
+    try:
+        ami = server['values']['ami']
+    except:
+        ami = 'N/A'
+
+    provider = "aws"
+
+    server_infos = {
+        'name': server['name'],
+        'provider': provider,
+        'id': id,
+        'private_ip': private_ip,
+        'public_ip': public_ip,
+        'instance_type': instance_type,
+        'cpu_count': cpu_count,
+        'availability_zone': availability_zone,
+        'disk_size': disk_size,
+        'ami': ami
+    }
+
+    print(server_infos)
+
+    return server_infos
+
+
+
