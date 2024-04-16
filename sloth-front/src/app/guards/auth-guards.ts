@@ -27,17 +27,15 @@ export class AuthGuard implements CanActivate {
         if (isAuthenticated) {
           return true;
         }
-    
-
-        // redirect if not authenticated
-        // innit connexion with keycloak et redirect to current url locked
-        this.oidcSecurityService.authorize();
-        if (isAuthenticated) {
-            return true;
-        }else {
-            return this.router.parseUrl('/landing');
+        else if (!isAuthenticated) {
+          // redirect if not authenticated
+          // innit connexion with keycloak et redirect to current url locked
+          this.oidcSecurityService.authorize();
+          // new test to access to the current url
+            
         }
-        //return this.router.parseUrl('/landing');
+        return this.router.parseUrl('/landing');
+    
       })
     );
   }

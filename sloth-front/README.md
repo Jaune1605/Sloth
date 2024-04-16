@@ -214,6 +214,9 @@ notus-angular
 │   │   │   └── auth
 │   │   │       ├── auth.component.html
 │   │   │       └── auth.component.ts
+│   │   ├── guards
+│   │   │   └── role-based-redirect.guard.ts
+│   │   │   
 │   │   └── views
 │   │       ├── admin
 │   │       │   ├── dashboard
