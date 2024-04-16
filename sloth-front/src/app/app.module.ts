@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { AuthModule, LogLevel, StsConfigLoader} from 'angular-auth-oidc-client';
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -78,11 +78,26 @@ import { OAuthModule } from "angular-oauth2-oidc";
     LandingComponent,
     ProfileComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,HttpClientModule, OAuthModule.forRoot({
-    resourceServer: {
-        allowedUrls: ['http://10.18.0.253:8080/api'],
-        sendAccessToken: true
-    }
+  imports: [
+
+
+
+    BrowserModule, AppRoutingModule,HttpClientModule, AuthModule.forRoot({
+    
+    config: {
+      authority: 'http://10.19.4.2:8080/realms/External',
+      redirectUrl: window.location.origin,
+      postLogoutRedirectUri: window.location.origin,
+      clientId: 'external-client',
+      scope: 'email profile roles web-origins',
+      responseType: 'id_token token',
+      silentRenew: true,
+      useRefreshToken: true,
+      logLevel: LogLevel.Debug,
+      secureRoutes: ['/api'],
+    },
+ 
+  
 })],
   bootstrap: [AppComponent],
 })

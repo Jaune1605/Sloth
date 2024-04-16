@@ -1,58 +1,35 @@
-import { Component } from "@angular/core";
-
-import { OAuthService, NullValidationHandler, AuthConfig } from 'angular-oauth2-oidc';
+import { Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
+  selector: 'app-root',
+  templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
+  private readonly oidcSecurityService = inject(OidcSecurityService);
+
   title = "angular-dashboard-page";
-  constructor(private oauthService: OAuthService) {
-    this.configure();
-  }
-  async ngOnInit() {
-    this.configure();
-    const isLoggedIn = await this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    if(isLoggedIn){
-      console.log("Logged in")
-      const claims = this.oauthService.getIdentityClaims();
-      console.log('claims: ', claims);
-      const token = this.oauthService.getAccessToken();
-      console.log('token: ', token);
-      if (claims && claims['sub']) {
-        const userId = claims['sub'];
-        const email = claims['email'];
-      }
-    }
+
+  ngOnInit() {
+    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken }) => {
+      console.log('Auth Status:', isAuthenticated);
+      console.log('User Data:', userData);
+      console.log('Access Token:', accessToken);
+
+      var token = this.oidcSecurityService.getAccessToken()
+
+      // Effectuez des actions supplémentaires ici en fonction de l'état d'authentification
+      //if (!isAuthenticated) this.login();
+    });
   }
 
-  authConfig: AuthConfig = {
-    issuer: 'http://10.19.4.2:8080/realms/External',
-    redirectUri: window.location.origin + '/index.html',
-    clientId: 'external-client',
-    scope: 'email profile roles web-origins',
-    responseType: 'code',
-    // at_hash is not present in JWT token
-    disableAtHashCheck: true,
-    showDebugInformation: true,
-    requireHttps: false,
+  login() {
+    this.oidcSecurityService.authorize();
   }
 
-  public login() {
-    this.configure();
-    console.log("login")
-    this.oauthService.initLoginFlow();
-    console.log("login info ", this.oauthService.initLoginFlow())
-  }
-  
-  public logoff() {
-    this.oauthService.logOut();
-  }
-  
-  private configure() {
-    this.oauthService.configure(this.authConfig);
-    this.oauthService.tokenValidationHandler = new  NullValidationHandler();
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  logout() {
+    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
 }

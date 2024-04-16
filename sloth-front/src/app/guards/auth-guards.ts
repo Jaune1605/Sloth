@@ -1,32 +1,36 @@
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { Injectable, inject } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
+import { map, switchMap, catchError, take } from 'rxjs/operators';
 
-export function authGuard() {
-  const oauthService = inject(OAuthService);
-  const router = inject(Router);
 
-  return () => {
-    if (oauthService.hasValidAccessToken()) {
-      return true;
-    } else {
-      router.navigate(['/auth']);
-      return false;
-    }
-  };
-}
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanActivate {
+  private readonly oidcSecurityService = inject(OidcSecurityService);
+  private readonly router = inject(Router);
 
-export function adminGuard() {
-  const oauthService = inject(OAuthService);
-  const router = inject(Router);
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> {
+    return this.oidcSecurityService.isAuthenticated$.pipe(
+      take(1),
+      map(({ isAuthenticated }) => {
+        // allow navigation if authenticated
+        if (isAuthenticated) {
+          return true;
+        }
 
-  return () => {
-    const hasRole = oauthService.getIdentityClaims()?.['role'] === 'admin';
-    if (oauthService.hasValidAccessToken() && hasRole) {
-      return true;
-    } else {
-      router.navigate(['/auth']);
-      return false;
-    }
-  };
+        // redirect if not authenticated
+        return this.router.parseUrl('/unauthorized');
+      })
+    );
+  }
 }
