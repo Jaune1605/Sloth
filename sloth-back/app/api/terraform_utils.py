@@ -53,25 +53,30 @@ def apply_terraform(provider : str, instance_details : dict):
 
 def createInfrastructure(provider : str, instance_details : dict):
         
-        subprocess.run(['ssh-keygen', '-t', 'rsa', '-b', '4096', '-f', f'../keys/{instance_details["name"]}-key', '-N', ''])
+    # Check if there is already a key pair for the instance, delete it if it exists
+    if os.path.exists(f'../keys/{instance_details["name"]}-key'):
+        os.remove(f'../keys/{instance_details["name"]}-key')
+        os.remove(f'../keys/{instance_details["name"]}-key.pub')
 
-        instance_details['public_key'] = open(f'../keys/{instance_details["name"]}-key.pub').read()
+    subprocess.run(['ssh-keygen', '-t', 'rsa', '-b', '4096', '-f', f'../keys/{instance_details["name"]}-key', '-N', ''])
 
-        return_code, stdout, stderr = apply_terraform(provider,instance_details)
+    instance_details['public_key'] = open(f'../keys/{instance_details["name"]}-key.pub').read()
 
-        if return_code != 0:
-            raise Exception(f'Erreur Terraform: {stderr}')
-        
-        # Generate the SSH key pair for the instance
+    return_code, stdout, stderr = apply_terraform(provider,instance_details)
 
-        # Add the public key to the instance
-        #subprocess.run(['sshpass', '-p', instance_details['password'], 'ssh-copy-id', '-i', f'../keys/{instance_details["name"]}-key.pub', f'{instance_details["username"]}@{instance_details["ipAddress"]}'])
+    if return_code != 0:
+        raise Exception(f'Erreur Terraform: {stderr}')
+    
+    # Generate the SSH key pair for the instance
 
-        # Add the resource to the inventory file
-        with open('../ansible/inventory', 'a') as f:
-            f.write(f"{instance_details['name']} ansible_host={instance_details['ipAddress']} ansible_user={instance_details['username']} ansible_ssh_private_key_file=../keys/{instance_details['name']}-key\n")
+    # Add the public key to the instance
+    #subprocess.run(['sshpass', '-p', instance_details['password'], 'ssh-copy-id', '-i', f'../keys/{instance_details["name"]}-key.pub', f'{instance_details["username"]}@{instance_details["ipAddress"]}'])
 
-        return {"message": "Infrastructure created successfully"}
+    # Add the resource to the inventory file
+    with open('../ansible/inventory', 'a') as f:
+        f.write(f"{instance_details['name']} ansible_host={instance_details['ipAddress']} ansible_user={instance_details['username']} ansible_ssh_private_key_file=../keys/{instance_details['name']}-key\n")
+
+    return {"message": "Infrastructure created successfully"}
 
 def destroyInfrastructure(provider: str, resource_name: str):
     """
