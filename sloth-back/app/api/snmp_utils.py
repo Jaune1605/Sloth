@@ -1,8 +1,9 @@
-from pysnmp.hlapi import getCmd, SnmpEngine, CommunityData, UdpTransportTarget, ContextData, ObjectType, ObjectIdentity
+#from pysnmp.hlapi import getCmd, SnmpEngine, CommunityData, UdpTransportTarget, ContextData, ObjectType, ObjectIdentity
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
+"""
 def snmp_get(target, oid, community='public', port=161, engine=SnmpEngine()):
 
     print("Hey ! I'm here !")
@@ -24,3 +25,4 @@ def snmp_get(target, oid, community='public', port=161, engine=SnmpEngine()):
     else:
         for varBind in varBinds:
             return f"{varBind[0].prettyPrint()} = {varBind[1].prettyPrint()}"
+"""
