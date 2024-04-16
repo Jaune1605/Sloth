@@ -68,7 +68,7 @@ def createInfrastructure(provider : str, instance_details : dict):
         #subprocess.run(['sshpass', '-p', instance_details['password'], 'ssh-copy-id', '-i', f'../keys/{instance_details["name"]}-key.pub', f'{instance_details["username"]}@{instance_details["ipAddress"]}'])
 
         # Add the resource to the inventory file
-        with open('../ansible/inventory', 'a') as f:
+        with open('../../ansible/inventory', 'a') as f:
             f.write(f"{instance_details['name']} ansible_host={instance_details['ipAddress']} ansible_user={instance_details['username']} ansible_ssh_private_key_file=../keys/{instance_details['name']}-key\n")
 
         return {"message": "Infrastructure created successfully"}
