@@ -25,6 +25,7 @@ question: any;
         },
         error: (error) => {
           console.error('Error fetching data:', error);
+          
         }
       });
     }
