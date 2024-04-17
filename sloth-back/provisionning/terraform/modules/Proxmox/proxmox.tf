@@ -9,8 +9,8 @@ terraform {
 
 provider "proxmox" {
   endpoint = "https://10.19.4.4:8006/"
-  username = var.proxmox_username
-  password = var.proxmox_password
+  username = "root@pam"
+  password = "slothPAJO123!"
   # because self-signed TLS certificate is in use
   insecure = true
   # uncomment (unless on Windows...)
