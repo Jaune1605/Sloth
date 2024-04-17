@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-def snmp_get(target, oid, community='public', port=161, engine=SnmpEngine()):
+def snmp_get(target, oid, community='slothIT', port=161, engine=SnmpEngine()):
 
     print("Hey ! I'm here !")
 
