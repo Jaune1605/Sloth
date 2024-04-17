@@ -103,7 +103,10 @@
           <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i class="fas fa-robot mr-2 text-lg text-blueGray-400"></i>
-              Here is your answers
+              Here are your answers
+            </div>
+            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400">
+              SELECT THE MOST APPROPRIATE ANSWER
             </div>
             <div class="flex flex-wrap justify-center">
               <div class="w-full px-3 py-2 space-y-5">
@@ -111,14 +114,21 @@
                   <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Currently nothing</h5>
                   <p class="font-normal text-blueGray-700">Write your question or reformulate the question to get an answer.</p>
                 </div>
-                <div *ngFor="let prediction of predictions; let i = index" class="relative block p-6 px-3 py-2 bg-white rounded-lg shadow-lg">
-                  <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth rounded-full h-8 w-8" [ngStyle]="{'opacity': getOpacity(i)}">
-                    <span class="font-bold">{{ (prediction.probability * 100) | number:'1.0-0' }}</span>
-                    <i class="fas fa-percentage ml-1 text-xs"></i>
-                  </div>
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">{{ prediction.label }}</h5>
-                  <p class="font-normal text-blueGray-700">This answer has a probability of {{ (prediction.probability * 100) | number:'1.2-2' }}%</p>
+                <div *ngFor="let prediction of predictions; let i = index" 
+                class="relative block p-6 px-3 py-2 bg-white rounded-lg shadow-lg"
+                [class.bg-orange-300]="prediction === selectedPrediction"
+                [class.bg-white]="prediction !== selectedPrediction">
+                <input type="radio" id="pred{{i}}" name="selectedPrediction" [(ngModel)]="selectedPrediction" [value]="prediction" class="hidden">
+                  <label [for]="'pred' + i" class="cursor-pointer">
+                    <div class="absolute top-0 right-0 m-4 flex items-center justify-center text-sm text-black bg-orange-sloth rounded-full h-8 w-8" [ngStyle]="{'opacity': getOpacity(i)}">
+                      <span class="font-bold">{{ (prediction.probability * 100) | number:'1.0-0' }}</span>
+                      <i class="fas fa-percentage ml-1 text-xs"></i>
+                    </div>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700">Answer: {{ i+1 }}</h5>
+                    <p class="font-normal text-blueGray-700">{{ prediction.label }}</p>
+                  </label>
                 </div>
+                <button *ngIf="selectedPrediction" (click)="submitSelection()" class="mt-4 p-2 bg-orange-sloth text-white rounded-lg">Submit Selected Prediction</button>
               </div>
             </div>
           </div>
