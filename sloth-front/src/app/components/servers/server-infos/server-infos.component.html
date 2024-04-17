@@ -14,19 +14,7 @@
         IP: <span class="text-white">{{ server.ip }}</span>
       </p>
       <p class="text-green-200 text-base">
-        MAC Address: <span class="text-white">{{ server.mac_address }}</span>
-      </p>
-      <p class="text-green-200 text-base">
-        CPU Architecture: <span class="text-white">{{ server.cpu_architecture }}</span>
-      </p>
-      <p class="text-green-200 text-base">
-        CPU Count: <span class="text-white">{{ server.cpu_count }}</span>
-      </p>
-      <p class="text-green-200 text-base">
-        Memory Size: <span class="text-white">{{ server.memory_size }}</span>
-      </p>
-      <p class="text-green-200 text-base">
-        Bridge Name: <span class="text-white">{{ server.bridge_name }}</span>
+        OS: <span class="text-white">{{ server.os }}</span>
       </p>
     </ng-container>
 
@@ -70,7 +58,7 @@
     </button>
     <button
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      (click)="openConfigurationPanel()"
+      (click)="configureServer(server.id)"
       [disabled]="serverService.getServerLoadingStatus(server.name)">
       Configure
     </button>

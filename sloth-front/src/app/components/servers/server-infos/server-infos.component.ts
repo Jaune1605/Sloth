@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ServerService } from '../../../services/server/server.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-server-infos',
@@ -8,20 +9,14 @@ import { ServerService } from '../../../services/server/server.service';
 })
 export class ServerInfosComponent {
 
-  isConfigPanelOpen = false;
-
-  openConfigurationPanel() {
-    this.isConfigPanelOpen = true;
-  }
-
-  closePanel() {
-    this.isConfigPanelOpen = false;
-  }
 
   @Input("server")
   server: any;
 
-  constructor(protected serverService: ServerService) { }
+  constructor(
+    protected serverService: ServerService,
+    protected router: Router
+    ) { }
 
   /**
    * Delete a server
@@ -32,4 +27,11 @@ export class ServerInfosComponent {
     this.serverService.deleteServers(serverName, serverProvider);
   }
 
+  configureServer(serverId: string) {
+    this.router.navigate(['/admin/configure', serverId]);
+    console.log("Configure server with id: " + serverId);
+  }
+
+
 }
+

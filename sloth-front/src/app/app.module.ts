@@ -25,7 +25,7 @@ import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
 import { CreateServerFormComponent } from "./views/admin/create-server-form/create-server-form.component";
 import { InfrastructurePageComponent } from "./views/admin/infrastructure-page/infrastructure-page.component";
-import { ServerConfigureComponent } from "./views/admin/server-configure/server-configure.component";
+import { ConfigurePageComponent } from "./views/admin/configure-page/configure-page.component";
 
 
 // auth views
@@ -58,6 +58,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { AwsFormComponent } from "./components/servers/aws-form/aws-form.component";
 import { ProxmoxFormComponent } from "./components/servers/proxmox-form/proxmox-form.component";
 import { ServerInfosComponent } from "./components/servers/server-infos/server-infos.component";
+import { ActivatedRoute } from "@angular/router";
 
 
 @NgModule({
@@ -91,7 +92,7 @@ import { ServerInfosComponent } from "./components/servers/server-infos/server-i
     ProfileComponent,
     CreateServerFormComponent,
     InfrastructurePageComponent,
-    ServerConfigureComponent,
+    ConfigurePageComponent,
     AwsFormComponent,
     ProxmoxFormComponent,
     ServerInfosComponent,

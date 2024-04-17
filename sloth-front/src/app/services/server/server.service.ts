@@ -4,14 +4,15 @@ import { first } from 'rxjs/operators';
 import {Router} from "@angular/router";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ServerService {
 
-  private serverArray: any[] = [];
+  private serverArray: any[] = []; // Servers provisioned
+  private playbookArray: any[] = []; // Playbooks Ansible
   private serverLoadingStatus: any[] = [];
+  private selectedServer: any;
 
   private _maskIp: string = "/16"; // Masque de sous-réseau (réseau de l'ESIEE)
   private _prefixIp: string = "10.18."; // Préfix de l'adresse IP (réseau de l'ESIEE)
@@ -20,6 +21,7 @@ export class ServerService {
     "10.18.0.253"+this.maskIp, // Reserved
     "10.18.0.0"+this.maskIp, // Network
   ];
+
 
   get maskIp(): string {
     return this._maskIp;
@@ -58,7 +60,7 @@ export class ServerService {
    * Refresh the server array
    */
   refreshServerArray() {
-    this.http.get('http://10.18.0.253:8000/sloth/instances')
+    return this.http.get('http://10.18.0.253:8000/sloth/instances')
       .pipe(first())
       .subscribe((servers: any) => {
         this.serverArray = servers;
@@ -67,10 +69,28 @@ export class ServerService {
   }
 
   /**
+   * Refresh the playbook array
+   */
+  refreshPlaybookArray() {
+    return this.http.get('http://10.18.0.253:8000/sloth/configure')
+      .pipe(first())
+      .subscribe((playbooks: any) => {
+        this.playbookArray = playbooks;
+      });
+  }
+
+  /**
    * @returns the servers
    */
   getServers() {
     return this.serverArray;
+  }
+
+  /**
+   * @returns the playbooks
+   */
+  getPlaybooks() {
+    return this.playbookArray;
   }
 
   /**
@@ -110,25 +130,23 @@ export class ServerService {
    */
 addProxmoxServer(serverData: any) {
     let server = {
-      //type: "proxmox",
       name: serverData.serverName,
       node_name: "infra",
       username: serverData.username,
       password: serverData.password,
       datastore_id: "local-lvm",
-      file_id: "local:iso/ubuntu-22.10-server-cloudimg-amd64.img",
+      file_id: serverData.os,
       interface: "virtio0",
       iothread: "true",
       discard: "on",
       size: serverData.diskSize,
       cores: serverData.cpu,
-      memory: serverData.cpu,
+      memory: serverData.memory,
       ipAddress: this._prefixIp + serverData.ipAddress,
     };
 
-    let response = null;
 
-    this.http.post('http://10.18.0.253:8000/sloth/instances/proxmox', server)
+    return this.http.post('http://10.18.0.253:8000/sloth/instances/proxmox', server)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -142,8 +160,6 @@ addProxmoxServer(serverData: any) {
           alert('Error adding instance on proxmox');
         }
       });
-
-    return response;
   }
   /**
    * Add an AWS server
@@ -159,9 +175,7 @@ addProxmoxServer(serverData: any) {
 
     console.log("Server Spec : \n\t",server);
 
-    let response = null;
-
-    response = this.http.post('http://10.18.0.253:8000/sloth/instances/aws', server)
+    return this.http.post('http://10.18.0.253:8000/sloth/instances/aws', server)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -175,8 +189,6 @@ addProxmoxServer(serverData: any) {
           alert('Error adding instance on AWS');
         }
       });
-
-    return response;
   }
 
   /**
@@ -230,14 +242,30 @@ addProxmoxServer(serverData: any) {
   }
 
 
-
-
-
-
-
-
-
-
+  /**
+   * Run a playbook on a host
+   * @param host
+   * @param playbookName
+   */
+  runPlaybook(host : string, playbookName:string) {
+    let playbook = {
+      ip: host,
+      playbook: playbookName
+    };
+    const url = `http://10.18.0.253:8000/sloth/configure/${host}/${playbookName}`;
+    return this.http.post(url, playbook)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          console.log('Playbook executed successfully');
+          alert('Playbook executed successfully');
+        },
+        error: () => {
+          console.error('Error executing playbook');
+          alert('Error executing playbook');
+        }
+      });
+  }
 
   /**
    * Get the servers sorted by provider
@@ -251,6 +279,14 @@ addProxmoxServer(serverData: any) {
    */
   getServersFilteredByProvider(provider: string): any[] {
     return this.getServers().filter(server => server.provider === provider);
+  }
+
+  /**
+   * Retrieve a server by its id
+   * @param id
+   */
+  getServerById(id: any) {
+    return this.serverArray.find((server) => server.id === id);
   }
 
 
@@ -299,7 +335,4 @@ addProxmoxServer(serverData: any) {
     const nameRegex = new RegExp('^[a-zA-Z0-9_-]{3,16}$');
     return nameRegex.test(submittedName);
   }
-
-
-
 }

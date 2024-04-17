@@ -1,0 +1,48 @@
+<div *ngIf="update()" class="dashboard bg-gray-800 p-6">  <!-- Left panel -->
+  <div class="left-panel bg-gray-700 p-4 rounded-lg">
+    <h2 class="text-white text-lg font-bold mb-4">
+      Caractéristiques de l'instance
+    </h2>
+    <p class="text-green-200 text-base mb-2">
+      Nom de l'instance : <span class="text-white"> {{server.name}}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      Provider: <span class="text-white">{{ server.provider }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      OS: <span class="text-white">{{ server.os }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      IP Address: <span class="text-white">{{ server.ip }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      MAC Address: <span class="text-white">{{ server.mac_address }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      CPU Architecture: <span class="text-white">{{ server.cpu_architecture }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      CPU Count: <span class="text-white">{{ server.cpu_count }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      Memory Size: <span class="text-white">{{ server.memory_size }}</span>
+    </p>
+    <p class="text-green-200 text-base">
+      Bridge Name: <span class="text-white">{{ server.bridge_name }}</span>
+    </p>
+  </div>
+
+  <!-- Center panel -->
+  <div class="center-panel">
+  </div>
+
+  <!-- Right panel -->
+  <div class="right-panel bg-gray-700 p-4 rounded-lg mt-6">
+    <h2 class="text-white text-lg font-bold mb-4">Exécuter un playbook</h2>
+    <select [(ngModel)]="selectedPlaybook" class="bg-gray-800 text-white p-2 rounded">
+      <option *ngFor="let playbook of playbooks.message" [value]="playbook">{{playbook}}</option>
+    </select>
+    <button (click)="runSelectedPlaybook()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Exécuter</button>
+  </div>
+
+</div>
