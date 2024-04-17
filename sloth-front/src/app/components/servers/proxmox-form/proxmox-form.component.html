@@ -9,10 +9,10 @@
   <div class="mb-5">
     <label for="os" class="block mb-2 text-sm font-medium text-gray-700">Systeme d'exploitation</label>
     <select id="serverOs" formControlName="os" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-orange-sloth focus:border-orange-sloth block w-full p-2.5">
-      <option value="ubuntu">Ubuntu</option>
-      <option value="centos">CentOS</option>
-      <option value="debian">Debian</option>
-      <option value="fedora">Fedora</option>
+        <option value="local:iso/ubuntu-22.04-server-cloudimg-amd64.img">Ubuntu</option>
+        <option value="local:iso/CentOS-7-x86_64-GenericCloud.img">CentOS</option>
+        <option value="local:iso/debian-12-genericcloud-amd64.img">Debian</option>
+        <option value="local:iso/Fedora-Cloud-Base-39-1.5.x86_64.img">Fedora</option>
     </select>
   </div>
 
@@ -48,12 +48,12 @@
   <div class="mb-5">
     <label for="ram" class="block mb-2 text-sm font-medium text-gray-700">Quantité de RAM (Go)</label>
     <select id="ram" formControlName="ram" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-orange-sloth focus:border-orange-sloth block w-full p-2.5">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="4">4</option>
-      <option value="8">8</option>
-      <option value="16">16</option>
-      <option value="32">32</option>
+        <option value="1024">1</option>
+        <option value="2048">2</option>
+        <option value="4096">4</option>
+        <option value="8192">8</option>
+        <option value="16384">16</option>
+        <option value="32768">32</option>
     </select>
   </div>
 

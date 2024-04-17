@@ -38,7 +38,8 @@ export class ConfigurePageComponent implements OnInit {
 
   runSelectedPlaybook(){
     const host = this.server.ip.split('/')[0].replace(/\./g, '-');
-    this.serverService.runPlaybook(host, this.selectedPlaybook);
+    const name = this.server.name;
+    this.serverService.runPlaybook(name, this.selectedPlaybook);
   }
 
 }
