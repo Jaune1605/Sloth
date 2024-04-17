@@ -8,6 +8,7 @@
       package:
         name: clamav
         state: latest
+        update_cache: yes
     
     - name: Enable and start clamav-freshclam service
       service:
