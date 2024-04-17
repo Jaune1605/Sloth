@@ -58,7 +58,7 @@ export class ServerService {
    * Refresh the server array
    */
   refreshServerArray() {
-    this.http.get('http://127.0.0.1:8000/sloth/instances')
+    this.http.get('http://10.18.0.253:8000/sloth/instances')
       .pipe(first())
       .subscribe((servers: any) => {
         this.serverArray = servers;
@@ -128,7 +128,7 @@ addProxmoxServer(serverData: any) {
 
     let response = null;
 
-    this.http.post('http://127.0.0.1:8000/sloth/instances/proxmox', server)
+    this.http.post('http://10.18.0.253:8000/sloth/instances/proxmox', server)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -161,7 +161,7 @@ addProxmoxServer(serverData: any) {
 
     let response = null;
 
-    response = this.http.post('http://127.0.0.1:8000/sloth/instances/aws', server)
+    response = this.http.post('http://10.18.0.253:8000/sloth/instances/aws', server)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -187,7 +187,7 @@ addProxmoxServer(serverData: any) {
     const server = this.serverLoadingStatus.find((s) => s.name === serverName);
     if (server) {
       server.loading = true;
-      this.http.delete(`http://127.0.0.1:8000/sloth/instances/Proxmox/${serverName}`).subscribe({
+      this.http.delete(`http://10.18.0.253:8000/sloth/instances/Proxmox/${serverName}`).subscribe({
         next: () => {
           server.loading = false;
           this.refreshServerArray();
@@ -211,7 +211,7 @@ addProxmoxServer(serverData: any) {
     const server = this.serverLoadingStatus.find((s) => s.name === serverName);
     if (server) {
       server.loading = true;
-      this.http.delete(`http://127.0.0.1:8000/sloth/instances/aws/${serverName}`)
+      this.http.delete(`http://10.18.0.253:8000/sloth/instances/aws/${serverName}`)
         .pipe(first())
           .subscribe({
             next: () => {

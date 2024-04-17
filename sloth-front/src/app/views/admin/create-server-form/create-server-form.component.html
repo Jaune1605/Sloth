@@ -1,10 +1,19 @@
-<div class="mb-5">
-  <label for="provider">Choose Provider:</label>
-  <select id="provider" (change)="onProviderChange($event.target)">    <option value="proxmox">Proxmox</option>
+<div class="flex flex-wrap">
+  <div class="w-full  px-4">
+
+<div  class="relative flex flex-col min-w-0 w-full p-2 shadow-lg rounded bg-white-sloth">
+  <h3
+  class="font-semibold text-lg text-blueGray-700"
+  >
+    Choose a provider
+  </h3>  
+<select id="provider" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-orange-sloth focus:border-orange-sloth block w-full p-2.5" (change)="onProviderChange($event.target) ">    <option value="proxmox">Proxmox</option>
     <option value="aws">AWS</option>
   </select>
 </div>
 
 <app-proxmox-form *ngIf="currentProvider === 'proxmox'"></app-proxmox-form>
 <app-aws-form *ngIf="currentProvider === 'aws'"></app-aws-form>
+  </div>
+</div>
 
