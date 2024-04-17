@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7323c3e3-f0ae-4ad7-ad01-7643afcaa309" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/snmp.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sloth-back.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/inventory" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/inventory" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/clamav.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/clamav.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/mariadb.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/mariadb.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/resize.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/resize.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/templates/index.html.j2" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/templates/index.html.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/templates/nginx.conf.j2" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/templates/nginx.conf.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/update.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/update.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbooks/web.yml" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/playbooks/code/web.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/ansible_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/api/ansible_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/api/controllers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/snmp_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/terraform_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/ansible/inventory" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/MachineAWS-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/MachineAWS-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/Mamamia-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/Mamamia-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/TestFront-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/TestFront-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/machineValidator-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/machineValidator-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-validator-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-validator-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-2-ansible-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-2-ansible-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-centos-test-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-centos-test-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-debian-test-2-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-debian-test-2-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-fedora-4-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-fedora-4-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-ubuntu-22-4-bis-key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keys/test-vm-ubuntu-22-4-bis-key.pub" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provisionning/app/api/snmp_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/api/snmp_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/provisionning/app/api/terraform_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/app/api/terraform_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/aws_instance.tf.j2" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/templates/aws_instance.tf.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/proxmox_instance.tf.j2" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/templates/proxmox_instance.tf.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules.tf" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/terraform/modules.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules/AWS/aws.tf" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/terraform/modules/AWS/aws.tf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terraform/modules/Proxmox/proxmox.tf" beforeDir="false" afterPath="$PROJECT_DIR$/provisionning/terraform/modules/Proxmox/proxmox.tf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2dwc3d4ZoI8Qk8ArcSWacBgyyEU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging theo-backend"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="sloth-back" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7323c3e3-f0ae-4ad7-ad01-7643afcaa309" name="Changes" comment="" />
+      <created>1710922384234</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710922384234</updated>
+    </task>
+    <servers />
+  </component>
+</project>

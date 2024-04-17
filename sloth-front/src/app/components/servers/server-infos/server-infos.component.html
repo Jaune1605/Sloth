@@ -59,7 +59,8 @@
     <button
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       (click)="configureServer(server.id)"
-      [disabled]="serverService.getServerLoadingStatus(server.name)">
+      [disabled]="serverService.getServerLoadingStatus(server.name)"
+      *ngIf="server.provider !== 'aws'">
       Configure
     </button>
   </div>
