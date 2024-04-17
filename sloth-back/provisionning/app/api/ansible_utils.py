@@ -19,7 +19,9 @@ def get_ansible_playbooks():
         for playbook in cleaned_output:
 
             playbook = playbook.split(".")[0]
-            cleaned_playbook_output.append(playbook)
+
+            if playbook != "":
+                cleaned_playbook_output.append(playbook)
 
         return {"success": True, "message": cleaned_playbook_output}
 
