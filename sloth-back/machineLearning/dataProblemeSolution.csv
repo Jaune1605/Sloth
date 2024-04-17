@@ -1,4 +1,6 @@
 Probleme,Solution
+Jojo.,John arrete de spam l'API t'es relou.
+Installation via pip ne fonctionne pas.,Utiliser la commande avec le chemin de python 3 via homebrew (exemple:/opt/homebrew/bin/python3  -m pip install pymongo).
 Le serveur ne répond plus depuis ce matin.,Vérifier la connexion et redémarrer le routeur ou le switch concerné.
 L'application de messagerie se ferme dès son ouverture.,Réinstaller l'application ou effectuer une mise à jour du logiciel.
 L'écran de l'ordinateur reste noir au démarrage.,Vérifier les connexions physiques et tester avec un autre périphérique si possible.
