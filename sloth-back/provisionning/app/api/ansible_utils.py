@@ -10,7 +10,7 @@ def run_ansible_playbook(host : str, playbook_service : str):
 
 def get_ansible_playbooks():
     try:
-        output = subprocess.run(["ls", "../ansible/playbooks"], capture_output=True)
+        output = subprocess.run(["ls", "../ansible/playbooks/code"], capture_output=True)
 
         cleaned_output = output.stdout.decode("utf-8").split("\n")
 
