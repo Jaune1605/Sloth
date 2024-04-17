@@ -2,12 +2,17 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AuthModule, LogLevel, StsConfigLoader} from 'angular-auth-oidc-client';
 
+import {NgFor, NgIf} from '@angular/common';
+
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
+
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // layouts
@@ -18,6 +23,10 @@ import { AuthComponent } from "./layouts/auth/auth.component";
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
 import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
+import { CreateServerFormComponent } from "./views/admin/create-server-form/create-server-form.component";
+import { InfrastructurePageComponent } from "./views/admin/infrastructure-page/infrastructure-page.component";
+import { ServerConfigureComponent } from "./views/admin/server-configure/server-configure.component";
+
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
@@ -46,7 +55,9 @@ import { IndexDropdownComponent } from "./components/dropdowns/index-dropdown/in
 import { TableDropdownComponent } from "./components/dropdowns/table-dropdown/table-dropdown.component";
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { OAuthModule } from "angular-oauth2-oidc";
+import { AwsFormComponent } from "./components/servers/aws-form/aws-form.component";
+import { ProxmoxFormComponent } from "./components/servers/proxmox-form/proxmox-form.component";
+import { ServerInfosComponent } from "./components/servers/server-infos/server-infos.component";
 
 
 @NgModule({
@@ -78,12 +89,18 @@ import { OAuthModule } from "angular-oauth2-oidc";
     RegisterComponent,
     LandingComponent,
     ProfileComponent,
+    CreateServerFormComponent,
+    InfrastructurePageComponent,
+    ServerConfigureComponent,
+    AwsFormComponent,
+    ProxmoxFormComponent,
+    ServerInfosComponent,
   ],
   imports: [
 
 
 
-    BrowserModule,FormsModule, AppRoutingModule,HttpClientModule, AuthModule.forRoot({
+    NgFor, FormsModule, ReactiveFormsModule, NgIf,BrowserModule, AppRoutingModule,HttpClientModule, AuthModule.forRoot({
     
     config: {
       authority: 'http://10.19.4.2:8080/realms/External',

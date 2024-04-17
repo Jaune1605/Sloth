@@ -1,0 +1,10 @@
+<div class="mb-5">
+  <label for="provider">Choose Provider:</label>
+  <select id="provider" (change)="onProviderChange($event.target)">    <option value="proxmox">Proxmox</option>
+    <option value="aws">AWS</option>
+  </select>
+</div>
+
+<app-proxmox-form *ngIf="currentProvider === 'proxmox'"></app-proxmox-form>
+<app-aws-form *ngIf="currentProvider === 'aws'"></app-aws-form>
+

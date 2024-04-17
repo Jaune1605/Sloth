@@ -12,6 +12,9 @@ import { AuthComponent } from "./layouts/auth/auth.component";
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
 import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
+import { CreateServerFormComponent } from "./views/admin/create-server-form/create-server-form.component";
+import { InfrastructurePageComponent } from "./views/admin/infrastructure-page/infrastructure-page.component";
+import { ServerConfigureComponent } from "./views/admin/server-configure/server-configure.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
@@ -32,6 +35,9 @@ const routes: Routes = [
 
     children: [
       { path: "dashboard", component: DashboardComponent },
+      { path: "create-server-form", component: CreateServerFormComponent },
+      { path: "infrastructure-page", component: InfrastructurePageComponent },
+      { path: "server-configure", component: ServerConfigureComponent },
       { path: "settings", component: SettingsComponent },
       { path: "tables", component: TablesComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },

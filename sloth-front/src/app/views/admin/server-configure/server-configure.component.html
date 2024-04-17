@@ -1,0 +1,18 @@
+<form [formGroup]="servicesForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div formArrayName="services" class="space-y-2">
+
+        <h1 class="text-2xl font-bold text-green-400">Configure Server {{ server.name }}</h1>
+
+
+      <div *ngFor="let service of services.controls; let i = index" class="flex items-center space-x-2">
+        <select [formControlName]="i" class="form-select block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+          <option value="">Select a service</option>
+          <option *ngFor="let s of availableServices" [value]="s.name">{{ s.name }}</option>
+        </select>
+        <button type="button" (click)="removeService(i)" class="py-2 px-4 bg-red-500 text-white rounded hover:bg-red-700">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addService()" class="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700">Add Service</button>
+    <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700">Submit</button>
+  </form>
+  

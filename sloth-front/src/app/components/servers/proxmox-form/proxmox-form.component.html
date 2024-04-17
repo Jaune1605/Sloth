@@ -1,0 +1,79 @@
+<form [formGroup]="proxmoxForm" (ngSubmit)="onSubmit()" class="max-w-xl mx-auto my-10 bg-gray-800 p-8 rounded-lg">
+  <div class="mb-5">
+    <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Nom de la machine</label>
+    <input type="text" id="name" formControlName="serverName" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+  </div>
+
+  <div class="mb-5">
+    <label for="os" class="block mb-2 text-sm font-medium text-gray-300">Systeme d'exploitation</label>
+    <select id="serverOs" formControlName="os" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+      <option value="ubuntu">Ubuntu</option>
+      <option value="centos">CentOS</option>
+      <option value="debian">Debian</option>
+      <option value="fedora">Fedora</option>
+    </select>
+  </div>
+
+  <div class="mb-5">
+    <label for="username" class="block mb-2 text-sm font-medium text-gray-300">Nom d'utilisateur</label>
+    <input type="text" id="username" formControlName="username" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+  </div>
+
+  <div class="mb-5">
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-300">Mot de passe</label>
+    <input type="password" id="password" formControlName="password" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+  </div>
+
+  <div class="mb-5">
+    <label for="ip" class="block mb-2 text-sm font-medium text-gray-300 mr-2">Adresse IP:</label>
+    <div class="flex items-center">
+      <span class="flex-none text-sm font-medium text-gray-300 bg-gray-700 border border-gray-600 rounded-l-lg px-2 py-2.5">10.18.</span>
+      <input type="text" id="ip" formControlName="ipAddress" class="flex-auto bg-gray-700 border-t border-b border-gray-600 text-white text-sm focus:ring-green-500 focus:border-green-500 w-full p-2.5" maxlength="8" placeholder="xxx.xxx">
+      <span class="flex-none text-sm font-medium text-gray-300 bg-gray-700 border border-gray-600 rounded-r-lg px-2 py-2.5">/16</span>
+    </div>
+    <!-- Message d'erreur pour le champ IP -->
+    <div *ngIf="proxmoxForm.controls['ipAddress'].touched">
+      <div *ngIf="proxmoxForm.controls['ipAddress'].errors?.['required']" class="text-red-500 text-sm mt-1">
+        L'adresse IP est obligatoire
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <label for="cpu" class="block mb-2 text-sm font-medium text-gray-300">Nombre de CPU</label>
+    <select id="cpu" formControlName="cpu" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="4">4</option>
+      <option value="8">8</option>
+    </select>
+  </div>
+
+  <div class="mb-5">
+    <label for="ram" class="block mb-2 text-sm font-medium text-gray-300">Quantité de RAM (Go)</label>
+    <select id="ram" formControlName="ram" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="4">4</option>
+      <option value="8">8</option>
+      <option value="16">16</option>
+      <option value="32">32</option>
+    </select>
+
+  </div>
+
+  <div class="mb-5">
+    <label for="disk" class="block mb-2 text-sm font-medium text-gray-300">Taille du disque (Go)</label>
+    <select id="disk" formControlName="diskSize" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="40">40</option>
+      <option value="80">80</option>
+      <option value="160">120</option>
+    </select>
+  </div>
+
+  <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75">
+    Créer
+  </button>
+</form>

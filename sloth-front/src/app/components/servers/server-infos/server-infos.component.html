@@ -1,0 +1,80 @@
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800">
+  <div class="px-6 py-4">
+    <div class="mb-4">
+      <div class="font-bold text-xl text-green-400">{{ server.name }}</div>
+      <div class="text-sm text-blue-500">(ID: {{ server.id }})</div>
+    </div>
+    <p class="text-green-200 text-base">
+      Provider: <span class="text-white">{{ server.provider }}</span>
+    </p>
+
+    <!-- Proxmox instance details -->
+    <ng-container *ngIf="server.provider === 'proxmox'">
+      <p class="text-green-200 text-base">
+        IP: <span class="text-white">{{ server.ip }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        MAC Address: <span class="text-white">{{ server.mac_address }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        CPU Architecture: <span class="text-white">{{ server.cpu_architecture }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        CPU Count: <span class="text-white">{{ server.cpu_count }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Memory Size: <span class="text-white">{{ server.memory_size }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Bridge Name: <span class="text-white">{{ server.bridge_name }}</span>
+      </p>
+    </ng-container>
+
+    <!-- AWS instance details -->
+    <ng-container *ngIf="server.provider === 'aws'">
+      <p class="text-green-200 text-base">
+        Private IP: <span class="text-white">{{ server.private_ip }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Public IP: <span class="text-white">{{ server.public_ip }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Instance Type: <span class="text-white">{{ server.instance_type }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        CPU Count: <span class="text-white">{{ server.cpu_count }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Availability Zone: <span class="text-white">{{ server.availability_zone }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        Disk Size: <span class="text-white">{{ server.disk_size }}</span>
+      </p>
+      <p class="text-green-200 text-base">
+        AMI: <span class="text-white">{{ server.ami }}</span>
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="flex space-x-4 mt-4">
+    <button
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      (click)="deleteServer(server.name, server.provider)"
+      [disabled]="serverService.getServerLoadingStatus(server.name)">
+      <span [class.hidden]="serverService.getServerLoadingStatus(server.name)">Delete</span>
+      <div
+        [class.hidden]="!serverService.getServerLoadingStatus(server.name)"
+        class="spinner-border animate-spin inline-block w-4 h-4 border-4 rounded-full"
+        role="status">
+      </div>
+    </button>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      (click)="openConfigurationPanel()"
+      [disabled]="serverService.getServerLoadingStatus(server.name)">
+      Configure
+    </button>
+  </div>
+
+</div>
+
