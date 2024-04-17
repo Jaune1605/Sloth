@@ -165,6 +165,19 @@ def getProxmoxInstance(server):
     except:
         bridge_name = 'N/A'
 
+    try:
+        os = server['values']['disk'][0]['file_id']
+        if "ubuntu" in os:
+            os = "Ubuntu"
+        elif "CentOS" in os:
+            os = "CentOS"
+        elif "debian" in os:
+            os = "Debian"
+        elif "Fedora" in os:
+            os = "Fedora"
+    except:
+        os = 'N/A'
+
     provider = "proxmox"
 
     server_infos = {
@@ -176,7 +189,8 @@ def getProxmoxInstance(server):
         'cpu_architecture': cpu_architecture,
         'cpu_count': cpu_count,
         'memory_size': memory_size,
-        'bridge_name': bridge_name
+        'bridge_name': bridge_name,
+         'os': os
     }
 
     print(server_infos)
