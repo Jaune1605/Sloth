@@ -54,6 +54,7 @@ async def deleteInstance(instance_type: str, resource_name: str):
 @router.post("/configure/{host}/{service}")
 async def configureHost(host: str, service: str):
     try:
+        print("Host : " + host + "\n")
         return run_ansible_playbook(host, service)
     except Exception as e:
         return HTTPException(status_code=400, detail="Failed to configure host : " + e.__str__())
