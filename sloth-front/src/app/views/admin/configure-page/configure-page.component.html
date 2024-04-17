@@ -1,34 +1,37 @@
-<div *ngIf="update()" class="dashboard bg-gray-800 p-6">  <!-- Left panel -->
-  <div class="left-panel bg-gray-700 p-4 rounded-lg">
-    <h2 class="text-white text-lg font-bold mb-4">
+<div class="flex flex-wrap">
+  <div class="w-full  px-4">
+
+<div *ngIf="update()" class="dashboard relative">  <!-- Left panel -->
+  <div class="left-panel bg-white-sloth p-4 rounded">
+    <h2 class="text-blueGray-400 text-sm mb-6 font-bold uppercase">
       Caractéristiques de l'instance
     </h2>
-    <p class="text-green-200 text-base mb-2">
-      Nom de l'instance : <span class="text-white"> {{server.name}}</span>
+    <p class="text-orange-sloth text-base font-bold mb-2">
+      Nom de l'instance : <span class="text-gray-sloth font-normal"> {{server.name}}</span>
     </p>
-    <p class="text-green-200 text-base">
-      Provider: <span class="text-white">{{ server.provider }}</span>
+    <p class="text-orange-sloth text-base">
+      Provider: <span class="text-gray-sloth">{{ server.provider }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      OS: <span class="text-white">{{ server.os }}</span>
+    <p class="text-orange-sloth text-base">
+      OS: <span class="text-gray-sloth">{{ server.os }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      IP Address: <span class="text-white">{{ server.ip }}</span>
+    <p class="text-orange-sloth text-base">
+      IP Address: <span class="text-gray-sloth">{{ server.ip }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      MAC Address: <span class="text-white">{{ server.mac_address }}</span>
+    <p class="text-orange-sloth text-base">
+      MAC Address: <span class="text-gray-sloth">{{ server.mac_address }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      CPU Architecture: <span class="text-white">{{ server.cpu_architecture }}</span>
+    <p class="text-orange-sloth text-base">
+      CPU Architecture: <span class="text-gray-sloth">{{ server.cpu_architecture }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      CPU Count: <span class="text-white">{{ server.cpu_count }}</span>
+    <p class="text-orange-sloth text-base uppercase">
+      CPU Count: <span class="text-gray-sloth">{{ server.cpu_count }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      Memory Size: <span class="text-white">{{ server.memory_size }}</span>
+    <p class="text-orange-sloth text-base">
+      Memory Size: <span class="text-gray-sloth">{{ server.memory_size }}</span>
     </p>
-    <p class="text-green-200 text-base">
-      Bridge Name: <span class="text-white">{{ server.bridge_name }}</span>
+    <p class="text-orange-sloth text-base">
+      Bridge Name: <span class="text-gray-sloth">{{ server.bridge_name }}</span>
     </p>
   </div>
 
@@ -37,12 +40,17 @@
   </div>
 
   <!-- Right panel -->
-  <div class="right-panel bg-gray-700 p-4 rounded-lg mt-6">
-    <h2 class="text-white text-lg font-bold mb-4">Exécuter un playbook</h2>
-    <select [(ngModel)]="selectedPlaybook" class="bg-gray-800 text-white p-2 rounded">
+  <div class="right-panel bg-white-sloth p-4 rounded mt-6">
+    <h2 class="text-blueGray-400 text-sm mb-2 font-bold uppercase">Exécuter un playbook</h2>
+    <select [(ngModel)]="selectedPlaybook"         
+    class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-orange-sloth focus:border-orange-sloth block w-full p-2.5"
+    >
       <option *ngFor="let playbook of playbooks.message" [value]="playbook">{{playbook}}</option>
     </select>
-    <button (click)="runSelectedPlaybook()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Exécuter</button>
+    <button (click)="runSelectedPlaybook()" class="bg-orange-sloth hover:bg-brown-sloth text-white font-bold py-2 px-4 rounded mt-4">Exécuter</button>
   </div>
 
+</div>
+
+  </div>
 </div>

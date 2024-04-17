@@ -1100,24 +1100,6 @@ select {
   }
 }
 
-.space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-y-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
@@ -1239,11 +1221,6 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-}
-
-.bg-pink-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(236, 72, 153, var(--tw-bg-opacity));
 }
 
 .bg-purple-200 {
@@ -1411,19 +1388,9 @@ select {
   background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
 }
 
-.hover\:bg-green-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(22, 163, 74, var(--tw-bg-opacity));
-}
-
 .hover\:bg-green-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(21, 128, 61, var(--tw-bg-opacity));
-}
-
-.hover\:bg-red-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 }
 
 .hover\:bg-orange-sloth:hover {
@@ -1520,11 +1487,6 @@ select {
   border-color: rgba(212, 212, 216, var(--tw-border-opacity));
 }
 
-.border-gray-600 {
-  --tw-border-opacity: 1;
-  border-color: rgba(82, 82, 91, var(--tw-border-opacity));
-}
-
 .border-blueGray-50 {
   --tw-border-opacity: 1;
   border-color: rgba(248, 250, 252, var(--tw-border-opacity));
@@ -1558,11 +1520,6 @@ select {
 .focus\:border-indigo-300:focus {
   --tw-border-opacity: 1;
   border-color: rgba(165, 180, 252, var(--tw-border-opacity));
-}
-
-.focus\:border-green-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgba(34, 197, 94, var(--tw-border-opacity));
 }
 
 .focus\:border-gray-300:focus {
@@ -2964,12 +2921,6 @@ select {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-2:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
 .focus\:ring:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2994,11 +2945,6 @@ select {
   --tw-ring-color: rgba(199, 210, 254, var(--tw-ring-opacity));
 }
 
-.focus\:ring-green-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgba(34, 197, 94, var(--tw-ring-opacity));
-}
-
 .focus\:ring-gray-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgba(113, 113, 122, var(--tw-ring-opacity));
@@ -3011,10 +2957,6 @@ select {
 
 .focus\:ring-opacity-50:focus {
   --tw-ring-opacity: 0.5;
-}
-
-.focus\:ring-opacity-75:focus {
-  --tw-ring-opacity: 0.75;
 }
 
 .fill-current {
@@ -3110,11 +3052,6 @@ select {
   color: rgba(220, 38, 38, var(--tw-text-opacity));
 }
 
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgba(212, 212, 216, var(--tw-text-opacity));
-}
-
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgba(113, 113, 122, var(--tw-text-opacity));
@@ -3168,6 +3105,16 @@ select {
 .text-blueGray-700 {
   --tw-text-opacity: 1;
   color: rgba(51, 65, 85, var(--tw-text-opacity));
+}
+
+.text-orange-sloth {
+  --tw-text-opacity: 1;
+  color: rgba(232, 110, 23, var(--tw-text-opacity));
+}
+
+.text-gray-sloth {
+  --tw-text-opacity: 1;
+  color: rgba(71, 79, 78, var(--tw-text-opacity));
 }
 
 .hover\:text-red-700:hover {
