@@ -8,6 +8,7 @@
       package:
         name: snmpd
         state: present
+        update_cache: yes
 
     - name: Ensure SNMP is enabled
       service:
