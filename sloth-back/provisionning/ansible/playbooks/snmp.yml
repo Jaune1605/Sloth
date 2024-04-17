@@ -1,0 +1,49 @@
+---
+- name: Deploy SNMP
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install SNMP
+      package:
+        name: snmpd
+        state: present
+
+    - name: Ensure SNMP is enabled
+      service:
+        name: snmpd
+        state: started
+        enabled: yes
+
+    - name: Comment default UDP port
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        search_string: "agentaddress  127.0.0.1,[::1]"
+        line: "#agentaddress 127.0.0.1,[::1]"
+        state: present
+
+    - name: Add a line to listen on the network
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        line: "agentaddress udp:161,udp6:[::1]:161"
+        state: present
+
+    - name: Configure SNMP community for ipv4
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        search_string: "rocommunity  public default -V systemonly"
+        line: "rocommunity slothIT default"
+        state: present
+
+    - name: Configure SNMP community for ipv6
+      lineinfile:
+        path: /etc/snmp/snmpd.conf
+        search_string: "rocommunity6 public default -V systemonly"
+        line: "rocommunity6 slothIT default"
+        state: present
+
+    - name: Restart SNMP
+      service:
+        name: snmpd
+        state: restarted
+        enabled: yes

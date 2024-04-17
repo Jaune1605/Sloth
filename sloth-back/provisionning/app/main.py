@@ -5,9 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.controllers import router as controllers
 import uvicorn
 
-
-
-
 app = FastAPI()
 
 app.add_middleware(
@@ -17,5 +14,6 @@ app.add_middleware(
     allow_methods=["*"],  # Autoriser toutes les méthodes
     allow_headers=["*"],  # Autoriser tous les headers
 )
+
 # Inclusion des routers de chaque sous-module
 app.include_router(controllers, prefix="/sloth")

@@ -12,5 +12,10 @@ terraform.tfstate.backup
 aws_var.tf
 proxmox_var.tf
 
+.vscode/
+.idea/
+.angular/
+node_modules/
+
 #keys/
 
