@@ -4,6 +4,13 @@
   become: yes
   tasks:
 
+    - name: Install ClamAV repo
+      package:
+        name: epel-release
+        state: latest
+        update_cache: yes
+      when: ansible_os_family == "RedHat" or ansible_os_family == "CentOS" or ansible_os_family == "Fedora"
+
     - name: Install ClamAV
       package:
         name: clamav
