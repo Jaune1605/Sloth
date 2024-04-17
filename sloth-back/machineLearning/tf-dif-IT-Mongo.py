@@ -46,4 +46,4 @@ y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 
 # Sauvegarde du modèle entraîné pour une utilisation ultérieure
-joblib.dump(model, 'model_it_problems.pkl')
+joblib.dump(model, 'model_it_problems_mongo.pkl')
