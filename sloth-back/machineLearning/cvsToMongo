@@ -1,0 +1,28 @@
+import csv
+from pymongo import MongoClient
+
+# Configuration de la connexion à MongoDB
+client = MongoClient("mongodb://sloth:slothPAJO123!@10.18.0.253:27017/slothDatabase")
+db = client.slothDatabase
+collection = db.questionAnswer
+
+csv_file_path = '/Users/paulfournet/Documents/Unilasalle/Cours I5/Projet S10/Sloth/sloth-back/machineLearning/dataProblemeSolution.csv'
+
+# Lecture du fichier CSV et insertion des données dans MongoDB
+with open(csv_file_path, mode='r', encoding='utf-8') as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        problem, solution = row
+        # Vérifie si le couple problème-solution existe déjà
+        if collection.count_documents({"problem": problem, "solution": solution}) == 0:
+            document = {
+                "problem": problem,
+                "solution": solution,
+                "probability": 0,
+                "_class": "com.example.demo.model.ProblemSolution"
+            }
+            collection.insert_one(document)
+        else:
+            print(f"Le couple problème-solution suivant existe déjà : {problem}, {solution}")
+
+print("Les données ont été insérées avec succès dans MongoDB.")
