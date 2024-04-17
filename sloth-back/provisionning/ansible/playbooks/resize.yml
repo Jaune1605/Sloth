@@ -1,0 +1,27 @@
+---
+- name: Resize Main Partition
+  hosts: all
+  become: true
+  tasks:
+    - name: Install parted if not already installed
+      apt:
+        name: parted
+        state: present
+
+    - name: Resize partition
+      community.general.parted:
+        device: /dev/sda
+        number: 1
+        state: resize
+        resize_part_end: 100%
+
+    - name: Resize filesystem
+      community.general.filesystem:
+        fstype: ext4
+        dev: /dev/sda1
+        resizefs: yes
+
+    - name: Reboot
+      reboot:
+        reboot_timeout: 300
+        post_reboot_delay: 30

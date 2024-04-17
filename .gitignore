@@ -8,4 +8,9 @@ __pycache__/
 terraform.tfstate
 terraform.tfstate.backup
 
+# Ignore the variables values file
+aws_var.tf
+proxmox_var.tf
+
 #keys/
+

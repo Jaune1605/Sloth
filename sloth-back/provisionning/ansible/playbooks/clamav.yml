@@ -1,0 +1,24 @@
+---
+- name: Install ClamAV
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install ClamAV
+      package:
+        name: clamav
+        state: latest
+    
+    - name: Enable and start clamav-freshclam service
+      service:
+        name: clamav-freshclam
+        enabled: yes
+        state: started
+    
+    - name: Plan a daily scan
+      cron:
+        name: "ClamAV daily scan"
+        minute: 0
+        hour: 0
+        job: "clamscan -r /"
+        state: present
