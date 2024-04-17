@@ -60,6 +60,8 @@ def createInfrastructure(provider : str, instance_details : dict):
 
     subprocess.run(['ssh-keygen', '-t', 'rsa', '-b', '4096', '-f', f'../keys/{instance_details["name"]}-key', '-N', ''])
 
+    subprocess.run(['chmod', '400', f'../keys/{instance_details["name"]}-key'])
+
     instance_details['public_key'] = open(f'../keys/{instance_details["name"]}-key.pub').read()
 
     return_code, stdout, stderr = apply_terraform(provider,instance_details)
