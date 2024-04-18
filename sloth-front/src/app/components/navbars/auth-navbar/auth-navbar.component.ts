@@ -8,6 +8,8 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class AuthNavbarComponent implements OnInit {
   private readonly oidcSecurityService = inject(OidcSecurityService);
+  
+  navbarOpen = false;
 
   title = "angular-dashboard-page";
 
@@ -23,7 +25,9 @@ export class AuthNavbarComponent implements OnInit {
       //if (!isAuthenticated) this.login();
     });
   }
-
+  setNavbarOpen() {
+    this.navbarOpen = !this.navbarOpen;
+  }
   login() {
     this.oidcSecurityService.authorize();
   }

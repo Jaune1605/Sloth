@@ -153,7 +153,7 @@ addProxmoxServer(serverData: any) {
           this.refreshServerArray();
           console.log('Instance added successfully on proxmox.');
           alert('Proxmox instance added successfully!');
-          this.router.navigate(['/infrastructure-page']);
+          this.router.navigate(['/admin/infrastructure-page']);
         },
         error: () => {
           console.error('Error adding instance on proxmox');
@@ -182,7 +182,7 @@ addProxmoxServer(serverData: any) {
           this.refreshServerArray();
           console.log('Instance added successfully on AWS.');
           alert('AWS instance added successfully!');
-          this.router.navigate(['/infrastructure-page']);
+          this.router.navigate(['/admin/infrastructure-page']);
         },
         error: () => {
           console.error('Error adding instance on AWS');
