@@ -4,10 +4,10 @@ import { NgForm } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  selector: 'app-solver',
+  templateUrl: './solver.component.html'
 })
-export class ProfileComponent implements OnInit {
+export class SolverComponent implements OnInit {
   predictions: any[] = [];
   question: any;
   selectedPrediction: any = null;

@@ -22,7 +22,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 
 // no layouts views
 import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
+import { SolverComponent } from "./views/solver/solver.component";
 
 const routes: Routes = [
   // admin views
@@ -57,7 +57,7 @@ const routes: Routes = [
   },
 
   // no layout views
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'solver', component: SolverComponent, canActivate: [AuthGuard] },
   { path: "landing", component: LandingComponent },
   { path: "", component: LandingComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },

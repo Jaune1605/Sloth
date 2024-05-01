@@ -8,10 +8,16 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 })
 export class AuthNavbarComponent implements OnInit {
   private readonly oidcSecurityService = inject(OidcSecurityService);
-  
+  isAuthenticated = false;  // Ajout pour suivre l'état d'authentification
   navbarOpen = false;
-
   title = "angular-dashboard-page";
+
+  constructor() {
+    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated }) => {
+      this.isAuthenticated = isAuthenticated;  // Mettre à jour l'état d'authentification
+      console.log('Auth Status Updated:', isAuthenticated);
+    });
+  }    
 
   ngOnInit() {
     this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken }) => {
@@ -34,5 +40,7 @@ export class AuthNavbarComponent implements OnInit {
 
   logout() {
     this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+    this.isAuthenticated = false; 
+    
   }
 }

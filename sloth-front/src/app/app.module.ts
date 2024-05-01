@@ -34,7 +34,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 
 // no layouts views
 import { LandingComponent } from "./views/landing/landing.component";
-import { ProfileComponent } from "./views/profile/profile.component";
+import { SolverComponent } from "./views/solver/solver.component";
 
 // components for views and layouts
 
@@ -42,18 +42,14 @@ import { AdminNavbarComponent } from "./components/navbars/admin-navbar/admin-na
 import { AuthNavbarComponent } from "./components/navbars/auth-navbar/auth-navbar.component";
 import { CardBarChartComponent } from "./components/cards/card-bar-chart/card-bar-chart.component";
 import { CardLineChartComponent } from "./components/cards/card-line-chart/card-line-chart.component";
-import { CardPageVisitsComponent } from "./components/cards/card-page-visits/card-page-visits.component";
 import { CardSettingsComponent } from "./components/cards/card-settings/card-settings.component";
-import { CardSocialTrafficComponent } from "./components/cards/card-social-traffic/card-social-traffic.component";
 import { CardStatsComponent } from "./components/cards/card-stats/card-stats.component";
 import { CardTableComponent } from "./components/cards/card-table/card-table.component";
 import { FooterAdminComponent } from "./components/footers/footer-admin/footer-admin.component";
 import { FooterComponent } from "./components/footers/footer/footer.component";
 import { FooterSmallComponent } from "./components/footers/footer-small/footer-small.component";
 import { HeaderStatsComponent } from "./components/headers/header-stats/header-stats.component";
-import { IndexDropdownComponent } from "./components/dropdowns/index-dropdown/index-dropdown.component";
 import { TableDropdownComponent } from "./components/dropdowns/table-dropdown/table-dropdown.component";
-import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { AwsFormComponent } from "./components/servers/aws-form/aws-form.component";
 import { ProxmoxFormComponent } from "./components/servers/proxmox-form/proxmox-form.component";
@@ -67,16 +63,12 @@ import { ActivatedRoute } from "@angular/router";
     DashboardComponent,
     CardBarChartComponent,
     CardLineChartComponent,
-    IndexDropdownComponent,
     TableDropdownComponent,
-    NotificationDropdownComponent,
     SidebarComponent,
     FooterComponent,
     FooterSmallComponent,
     FooterAdminComponent,
-    CardPageVisitsComponent,
     CardSettingsComponent,
-    CardSocialTrafficComponent,
     CardStatsComponent,
     CardTableComponent,
     HeaderStatsComponent,
@@ -89,7 +81,7 @@ import { ActivatedRoute } from "@angular/router";
     LoginComponent,
     RegisterComponent,
     LandingComponent,
-    ProfileComponent,
+    SolverComponent,
     CreateServerFormComponent,
     InfrastructurePageComponent,
     ConfigurePageComponent,

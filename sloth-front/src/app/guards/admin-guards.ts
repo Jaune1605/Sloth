@@ -34,7 +34,7 @@ export class AdmAuthGuard implements CanActivate {
               return true;
             } else {
               // Sinon, rediriger vers une autre page
-              return this.router.parseUrl('/profile');
+              return this.router.parseUrl('/solver');
             }
           }),
           catchError(err => {
