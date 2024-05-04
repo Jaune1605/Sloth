@@ -45,14 +45,39 @@ Sloth Backend est une API REST conçue avec Spring Boot, sécurisée via Keycloa
 
 
 ## API Endpoints
+Toutes les requettes doivent contenir le token. Pour utiliser dans postman, le token doit etre généré et renseigné dans Autorization -> type : bearer token
 
 - **POST /api/problems**: Soumettre un nouveau problème.
 - **GET /api/solutions**: Récupérer toutes les solutions.
-- **POST /api/solutions**: Ajouter une nouvelle solution.
+- **POST /api/solutions**: Ajouter une nouvelle solution dans la BDD.
+  
+- **Exemple de body d'une requette**:
+   ```bash
+   {
+    "phrase": "Impossible d'installer la dernière mise à jour du système"
+   }
+- **Exemple de réponse**:
+   ```bash
+   {
+    "predictions": [
+        {
+            "label": "Réinstaller l'application ou effectuer une mise à jour du logiciel.",
+            "probability": 0.6
+        },
+        {
+            "label": "Vérifier les mises à jour disponibles pour les applications ou contacter le support technique des applications pour une solution.",
+            "probability": 0.02
+        },
+        {
+            "label": "Effectuer une analyse antivirus et changer les mots de passe impliqués.",
+            "probability": 0.02
+        }
+    ]
+   }
 
 ## Sécurité
 
-Utilisez Keycloak pour configurer les utilisateurs, les rôles et les politiques d'accès. Assurez-vous que les utilisateurs sont correctement authentifiés et autorisés avant d'accéder aux endpoints critiques de l'API.
+Utilisez Keycloak pour configurer les utilisateurs, les rôles et les politiques d'accès. Assurez-vous que les utilisateurs sont correctement authentifiés et autorisés avant d'accéder aux endpoints de l'API.
 
 ## Dépendances
 
